@@ -14,4 +14,4 @@ public class HiddenPearlsApplication {
 
 //Sverrir Sigfússon
 // Svana was here
-
+//María Orradóttir was not here
