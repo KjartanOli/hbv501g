@@ -1,0 +1,106 @@
+@startuml
+skinparam classAttributeIconSize 0
+entity Location {
+    - id: long
+    - name: String
+    - location: String
+    - description: String
+    - category: LocationCategory
+    - tags: List<String>
+    - monthlyVisits: List<VisitStatistics>
+    - images: List<Image>
+}
+
+enum LocationCategory {
+    TRAP
+    PEARL
+}
+
+entity VisitStatistics {
+    - month: YearMonth
+    - visitors: int
+}
+
+Location --> VisitStatistics
+Location --> LocationCategory
+
+class LocationController <<controller>> {
+    - locationService: LocationService
+}
+
+interface LocationService {
+    + getAllLocations(): List<Location>
+    + getLocation(id: long): Location
+    + create(name: String, location: String, description: String, category: LocationCategory, tags: List<String>, visits: List<VisitStatistics>, images: List<Image>): Location
+    + update(id: long, name: String, location: String, description: String, category: LocationCategory, tags: List<String>, visits: List<VisitStatistics>, images: List<Image>): Location
+    + delete(id: long)
+}
+
+LocationService <|-- LocationServiceImplementation
+
+class LocationServiceImplementation <<service>> {
+    - repository: LocationRepository
+
+    + getAllLocations(): List<Location>
+    + getLocation(id: long): Location
+    + create(name: String, location: String, description: String, category: LocationCategory, tags: List<String>, visits: List<VisitStatistics>, images: List<Image>): Location
+    + update(id: long, name: String, location: String, description: String, category: LocationCategory, tags: List<String>, visits: List<VisitStatistics>, images: List<Image>): Location
+    + delete(id: long)
+
+}
+
+interface LocationRepository {
+    + findAll(): List<Location>
+    + findByName(name: String): List<Location>
+    + findByTag(tag: String): List<Location>
+    + findByCategory(category: LocationCategory): List<Location>
+    + save(location: Location): Location
+    + delete(location: Location): void
+}
+
+LocationController --> LocationService
+LocationServiceImplementation --> LocationRepository
+
+
+class AdminController <<controller>> {
+    - adminService: AdminService
+}
+
+interface AdminService {
+    + getAllAdmins(): List<Admin>
+    + getAdmin(id: long): Location
+    + create(username: String, password: String): Admin
+    + update(id: long, username: String, password: String): Admin
+    + delete(id: long)
+    + authenticate(username String, password: String): <PLACEHOLDER>
+}
+
+AdminService <|-- AdminServiceImplementation
+
+class AdminServiceImplementation <<service>> {
+    - repository: AdminRepository
+
+    + getAllAdmins(): List<Admin>
+    + getAdmin(id: long): Location
+    + create(username: String, password: String): Admin
+    + update(id: long, username: String, password: String): Admin
+    + delete(id: long)
+    + authenticate(username String, password: String): <PLACEHOLDER>
+}
+
+interface AdminRepository {
+    + findAll(): List<Admin>
+    + findByUsername(): Admin
+    + save(admin: Admin): Admin
+    + delete(admin: Admin): void
+}
+
+AdminController --> AdminService
+AdminServiceImplementation --> AdminRepository
+
+entity Admin {
+    - id: long
+    - username: String
+    - password: String
+}
+@enduml
