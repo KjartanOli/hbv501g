@@ -9,6 +9,8 @@ entity Location {
     - tags: List<String>
     - monthlyVisits: List<VisitStatistics>
     - images: List<Image>
+
+    {method} Getters and Setters
 }
 
 enum LocationCategory {
@@ -19,6 +21,8 @@ enum LocationCategory {
 entity VisitStatistics {
     - month: YearMonth
     - visitors: int
+
+    {method} Getters and Setters
 }
 
 Location --> VisitStatistics
@@ -108,5 +112,7 @@ entity Admin {
     - id: long
     - username: String
     - password: String
+
+    {method} Getters and Setters
 }
 @enduml
