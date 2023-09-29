@@ -31,6 +31,9 @@ class LocationController <<controller>> {
 interface LocationService {
     + getAllLocations(): List<Location>
     + getLocation(id: long): Location
+    + searchByName(name: String): List<Location>
+    + searchByTag(tag: String): List<Location>
+    + searchByCategory(category: LocationCategory): List<Location>
     + create(name: String, location: String, description: String, category: LocationCategory, tags: List<String>, visits: List<VisitStatistics>, images: List<Image>): Location
     + update(id: long, name: String, location: String, description: String, category: LocationCategory, tags: List<String>, visits: List<VisitStatistics>, images: List<Image>): Location
     + delete(id: long)
@@ -42,6 +45,9 @@ class LocationServiceImplementation <<service>> {
     - repository: LocationRepository
 
     + getAllLocations(): List<Location>
+    + searchByName(name: String): List<Location>
+    + searchByTag(tag: String): List<Location>
+    + searchByCategory(category: LocationCategory): List<Location>
     + getLocation(id: long): Location
     + create(name: String, location: String, description: String, category: LocationCategory, tags: List<String>, visits: List<VisitStatistics>, images: List<Image>): Location
     + update(id: long, name: String, location: String, description: String, category: LocationCategory, tags: List<String>, visits: List<VisitStatistics>, images: List<Image>): Location
