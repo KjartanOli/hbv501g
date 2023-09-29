@@ -1,0 +1,20 @@
+@startuml
+title List location
+autoactivate on
+hide footbox
+actor user
+participant LocationController
+participant Model
+participant LocationService
+participant LocationRepository
+
+user -> LocationController: getLocations()
+activate Model
+LocationController -> LocationService: getLocations()
+LocationService -> LocationRepository: findAll()
+return List<Locations>
+return List<Locations>
+LocationController -> Model: addAttribute("locs", List<Location>)
+return
+return "Locations"
+@enduml
