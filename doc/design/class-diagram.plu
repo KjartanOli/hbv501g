@@ -30,6 +30,10 @@ Location --> LocationCategory
 
 class LocationController <<controller>> {
     - locationService: LocationService
+
+    + getHome(model: Model): String
+    + getLocations(model: Model) String
+    + getLocation(id: @PathVariable long, model: Model)
 }
 
 interface LocationService {
@@ -74,6 +78,14 @@ LocationServiceImplementation --> LocationRepository
 
 class AdminController <<controller>> {
     - adminService: AdminService
+
+    + getAdmin(session: HttpSession, model: Model): Sring
+    + getAdmins(session: HttpSession, model: Model): Sring
+    + patchAdmin(session: HttpSession, model: Model): String
+    + deleteAdmin(session: HttpSession, model: Model): String
+    + getLocations(session: HttpSession, model: Model): Sring
+    + patchLocation(session: HttpSession, model: Model): String
+    + deleteLocation(session: HttpSession, model: Model): String
 }
 
 interface AdminService {
