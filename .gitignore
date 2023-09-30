@@ -35,3 +35,6 @@ build/
 ### Emacs ###
 *~
 *#
+
+### macOS extra files
+*/.DS_Store
