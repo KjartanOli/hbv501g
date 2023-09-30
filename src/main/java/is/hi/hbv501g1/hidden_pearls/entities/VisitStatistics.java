@@ -1,8 +1,8 @@
-package is.hi.hbv501g1.hidden_pearls.entites;
+package is.hi.hbv501g1.hidden_pearls.entities;
 
 import java.time.YearMonth;
 
-class VisitStatistics {
+public class VisitStatistics {
 	private YearMonth month;
 	private int visitors;
 
@@ -12,5 +12,13 @@ class VisitStatistics {
 
 	public int getVisitors() {
 		return this.visitors;
+	}
+
+	public void setMonth(YearMonth month) {
+		this.month = month;
+	}
+
+	public void setVisitors(int visitors) {
+		this.visitors = visitors;
 	}
 }

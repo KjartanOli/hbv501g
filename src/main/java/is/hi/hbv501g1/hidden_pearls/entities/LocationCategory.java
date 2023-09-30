@@ -1,6 +1,6 @@
-package is.hi.hbv501g1.hidden_pearls.entites;
+package is.hi.hbv501g1.hidden_pearls.entities;
 
-enum LocationCategory {
+public enum LocationCategory {
 	TRAP,
 	PEARL
 }
