@@ -1,4 +1,5 @@
 @startuml
+scale 1.25
 skinparam classAttributeIconSize 0
 entity Location {
     - id: long
@@ -79,8 +80,8 @@ LocationServiceImplementation --> LocationRepository
 class AdminController <<controller>> {
     - adminService: AdminService
 
-    + getAdmin(session: HttpSession, model: Model): Sring
-    + getAdmins(session: HttpSession, model: Model): Sring
+    + getAdmin(session: HttpSession, model: Model): String
+    + getAdmins(session: HttpSession, model: Model): String
     + patchAdmin(session: HttpSession, model: Model): String
     + deleteAdmin(session: HttpSession, model: Model): String
     + getLocations(session: HttpSession, model: Model): Sring
