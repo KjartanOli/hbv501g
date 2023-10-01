@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${location.name}">Location Name</title>
+</head>
+<body>
+    <div id="location-details">
+        <h1 th:text="${location.name}">Location Name</h1>
+        <p th:text="${location.description}">Location Description</p>
+        <p><strong>Category:</strong> <span th:text="${location.category}">Category</span></p>
+        <p><strong>Monthly Visits:</strong> <span th:text="${location.monthlyVisits}">Monthly Visits</span></p>
+
+        <div id="location-images">
+            <!--/*@thymesVar id="image" type="java.lang.String"*/-->
+            <div th:each="image : ${location.images}">
+                <img th:src="${image}" alt="Location Image" />
+            </div>
+        </div>
+    </div>
+</body>
+</html>
