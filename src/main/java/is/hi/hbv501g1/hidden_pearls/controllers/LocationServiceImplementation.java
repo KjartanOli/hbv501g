@@ -6,7 +6,7 @@ import is.hi.hbv501g1.hidden_pearls.entities.Location;
 import is.hi.hbv501g1.hidden_pearls.entities.LocationCategory;
 import is.hi.hbv501g1.hidden_pearls.entities.VisitStatistics;
 
-public class LocationService {
+public class LocationServiceImplementation {
 
     private LocalRepository repository;
 
