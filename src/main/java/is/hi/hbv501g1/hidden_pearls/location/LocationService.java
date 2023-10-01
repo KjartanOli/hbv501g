@@ -1,20 +1,17 @@
-package is.hi.hbv501g1.hidden_pearls.interfaces;
+package is.hi.hbv501g1.hidden_pearls.location;
 
 import java.awt.Image;
 import java.util.List;
-import is.hi.hbv501g1.hidden_pearls.entities.Location;
-import is.hi.hbv501g1.hidden_pearls.entities.LocationCategory;
-import is.hi.hbv501g1.hidden_pearls.entities.VisitStatistics;
 
 public interface LocationService {
 
     public List<Location> getAllLocations();
 
-    public Location getLocation();
+    public Location getLocation(long id);
 
     public List<Location> searchByName(String name);
 
-    public List<Location> searchByTag(String tag);
+    // public List<Location> searchByTag(String tag);
 
     public List<Location> searchByCategory(LocationCategory category);
 

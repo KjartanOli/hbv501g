@@ -1,13 +1,17 @@
-package is.hi.hbv501g1.hidden_pearls.entities;
+package is.hi.hbv501g1.hidden_pearls.location;
 
 import java.time.YearMonth;
 
+import jakarta.persistence.Embeddable;
+
+@Embeddable
 public class VisitStatistics {
-	private YearMonth month;
+	// Apperently month is a reserved keyword, so we use month_.
+	private YearMonth month_;
 	private int visitors;
 
 	public YearMonth getMonth() {
-		return this.month;
+		return this.month_;
 	}
 
 	public int getVisitors() {
@@ -15,7 +19,7 @@ public class VisitStatistics {
 	}
 
 	public void setMonth(YearMonth month) {
-		this.month = month;
+		this.month_ = month;
 	}
 
 	public void setVisitors(int visitors) {

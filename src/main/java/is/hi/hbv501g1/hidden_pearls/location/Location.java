@@ -1,16 +1,38 @@
-package is.hi.hbv501g1.hidden_pearls.entities;
+package is.hi.hbv501g1.hidden_pearls.location;
 
 import java.util.List;
 import java.awt.Image;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ElementCollection;
+
+@Entity
 public class Location {
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
 	private String name;
+	private String location;
 	private String description;
 	private LocationCategory category;
+	@ElementCollection
 	private List<String> tags;
+
+	@ElementCollection
 	private List<VisitStatistics> monthlyVisits;
-	private List<Image> images;
+	// private List<Image> images;
+
+	public Location(String name, String location, String description, LocationCategory category, List<String> tags, List<VisitStatistics> monthlyVisits)
+{
+		this.name = name;
+		this.name = location;
+		this.description = description;
+		this.category = category;
+		this.monthlyVisits = monthlyVisits;
+	}
 	
 	public long getId() {
 		return id;
@@ -23,6 +45,13 @@ public class Location {
 	}
 	public void setName(String name) {
 		this.name = name;
+
+	}
+	public String getLocation() {
+		return this.location;
+	}
+	public void setLocation(String location) {
+		this.location = location;
 	}
 	public String getDescription() {
 		return description;
@@ -48,12 +77,10 @@ public class Location {
 	public void setMonthlyVisits(List<VisitStatistics> monthlyVisits) {
 		this.monthlyVisits = monthlyVisits;
 	}
-	public List<Image> getImages() {
-		return images;
-	}
-	public void setImages(List<Image> images) {
-		this.images = images;
-	}
-
-	
+	// public List<Image> getImages() {
+	// 	return images;
+	// }
+	// public void setImages(List<Image> images) {
+	// 	this.images = images;
+	// }
 }
