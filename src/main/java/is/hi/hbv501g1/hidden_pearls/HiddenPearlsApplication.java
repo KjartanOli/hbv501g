@@ -9,9 +9,4 @@ public class HiddenPearlsApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(HiddenPearlsApplication.class, args);
 	}
-
 }
-
-//Sverrir Sigfússon
-// Svana was here
-//María Orradóttir was not here
