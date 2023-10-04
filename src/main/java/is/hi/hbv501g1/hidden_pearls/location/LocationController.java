@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 @Controller
 public class LocationController {
+	
 	@Autowired
     private LocationService locationService;
 
