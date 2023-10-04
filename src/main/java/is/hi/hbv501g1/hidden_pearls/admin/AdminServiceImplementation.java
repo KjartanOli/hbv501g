@@ -32,6 +32,8 @@ public class AdminServiceImplementation {
     public Admin update(long id, String username, String password) {
         var ad = getAdmin(id);
 
+        // spurning með if-klásur til að geta uppfært
+        // bara annaðhvort
         ad.setUsername(username);
         ad.setPassword(password);
 
@@ -42,7 +44,6 @@ public class AdminServiceImplementation {
         var ad = repository.findByUsername(id);
         if (ad != null)
             repository.delete(ad);
-
     }
 
     /* 
