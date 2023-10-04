@@ -33,7 +33,15 @@ public class LocationServiceImplementation implements LocationService{
     }
 
     public Location create(String name, String location, String description, LocationCategory category, List<String> tags, List<VisitStatistics> visits, List<Image> images) {
-		    return null;
+		var loc = new Location();
+		loc.setName(name);
+		loc.setLocation(location);
+		loc.setDescription(description);
+		loc.setCategory(category);
+		loc.setTags(tags);
+		loc.setMonthlyVisits(visits);
+
+		return repository.save(loc);
     }
 
     public Location update(long id, String name, String location, String description, LocationCategory category, List<String> tags, List<VisitStatistics> visits, List<Image> images) {
