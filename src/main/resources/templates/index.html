@@ -13,7 +13,8 @@
           <li th:each="location : ${pearls}">
             <span th:text="${location.name}"></span>
             <span th:text="${location.location}"></span>
-            <a href="/location/${location.id}">See more</a>
+            <div th:text="${location.description}"></div>
+            <a th:href="@{/location/{id}(id=${location.id})}">See more</a>
           </li>
         </ul>
       </div>
@@ -23,7 +24,8 @@
           <li th:each="location : ${traps}">
             <span th:text="${location.name}"></span>
             <span th:text="${location.location}"></span>
-            <a href="/location/${location.id}">See more</a>
+            <div th:text="${location.description}"></div>
+            <a th:href="@{/location/{id}(id=${location.id})}">See more</a>
           </li>
         </ul>
       </div>
