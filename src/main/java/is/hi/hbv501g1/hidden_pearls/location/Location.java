@@ -24,14 +24,6 @@ public class Location {
 	@ElementCollection
 	private List<VisitStatistics> monthlyVisits;
 	// private List<Image> images;
-
-	public Location(String name, String location, String description, LocationCategory category, List<String> tags, List<VisitStatistics> monthlyVisits) {
-		this.name = name;
-		this.name = location;
-		this.description = description;
-		this.category = category;
-		this.monthlyVisits = monthlyVisits;
-	}
 	
 	public long getId() {
 		return id;
