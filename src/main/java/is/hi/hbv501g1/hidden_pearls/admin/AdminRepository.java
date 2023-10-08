@@ -5,13 +5,12 @@ import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.jpa.repository.Query;
 
-public interface AdminRepository {
+public interface AdminRepository extends CrudRepository<Admin, Long>{
     public List<Admin> findAll();
-    
-    public Admin findByUsername(long id);
 
-    public Admin create(Admin admin);
-    
+    public Admin findById(long id);
+    public Admin findByUsername(String username);
+
     public Admin save(Admin admin);
 
     public void delete(Admin admin);

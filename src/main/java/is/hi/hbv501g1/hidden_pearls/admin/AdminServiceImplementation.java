@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AdminServiceImplementation {
+public class AdminServiceImplementation implements AdminService{
     
     @Autowired
     private AdminRepository repository;
@@ -16,10 +16,10 @@ public class AdminServiceImplementation {
     }
     
     public Admin getAdmin(long id) {
-        return repository.findByUsername(id);
+        return repository.findById(id);
     }
 
-    public Admin create(String username, String password, long id) {
+    public Admin create(String username, String password) {
         var ad = new Admin();
         
         ad.setUsername(username);
@@ -41,15 +41,13 @@ public class AdminServiceImplementation {
     }
 
     public void delete(long id) {
-        var ad = repository.findByUsername(id);
+        var ad = repository.findById(id);
         if (ad != null)
             repository.delete(ad);
     }
 
-    /* 
     // return type is PLACEHOLDER, implementation pending
     public void authenticate(String username, String password) {
-    } 
-    */
+    }
 
 }
