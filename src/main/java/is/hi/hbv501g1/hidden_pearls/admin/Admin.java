@@ -17,7 +17,7 @@ public class Admin {
         return id;
     }
 
-    // þessa þarf mögulega ekki
+    // þessa þarf mögulega ekki; mögulegt samt að Spring noti það
     public void setId(long id) {
         this.id = id;
     }

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Location</title>
+</head>
+<body>
+    <h1>Edit Location</h1>
+    <form action="#" th:action="@{/location/edit}" th:object="${location}" method="post">
+        <input type="hidden" th:field="*{id}">
+        <!-- form fields, need to populate with existing info -->
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" th:field="*{name}"><br>
+        <label for="location">Location:</label><br>
+        <input type="text" id="location" th:field="*{location}"><br>
+        <label for="description">Description:</label><br>
+        <textarea id="description" th:field="*{description}"></textarea><br>
+        <label for="category">Category:</label><br>
+        <select id="category" th:field="*{category}">
+            <option th:each="cat : ${T(is.hi.hbv501g1.hidden_pearls.location.LocationCategory).values()}" th:value="${cat}" th:text="${cat}"></option>
+        </select><br>
+         <!-- Assuming input tags as comma-separated values -->
+        <label for="tags">Tags:</label><br>
+        <input type="text" id="tags" name="tags"><br>
+        <input type="submit" value="Save">
+        <a href="#" th:href="@{/}" class="btn">Cancel</a> <!-- cancel button, need link to correct location -->
+    </form>
+    <!-- delete button, needs to take us back to previous page too -->
+    <form action="#" th:action="@{/location/delete}" th:object="${location}" method="post">
+        <input type="hidden" th:field="*{id}">
+        <input type="submit" value="Delete">
+    </form>
+</body>
+</html>
