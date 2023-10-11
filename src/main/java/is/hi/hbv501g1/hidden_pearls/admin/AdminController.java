@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
+import is.hi.hbv501g1.hidden_pearls.location.Location;
+import is.hi.hbv501g1.hidden_pearls.location.LocationService;
 import jakarta.servlet.http.HttpSession;
 
 // skeleton of implementation
@@ -12,6 +14,15 @@ public class AdminController {
     
     @Autowired
     private AdminService adminService;
+    @Autowired
+    private LocationService locationService;
+
+    public String adminPage(HttpSession session, Model model){
+        // Call a method in AdminService Class
+        // Add data to the Model
+        
+        return "admin";
+    }
 
     public String getAdmin(HttpSession session, Model model){
         return "";
@@ -38,6 +49,9 @@ public class AdminController {
     }
 
     public String deleteLocation(HttpSession session, Model model){
-        return "";
+        
+        //Location locationToDelete = 
+        
+        return "redirect:/admin";
     }
 }

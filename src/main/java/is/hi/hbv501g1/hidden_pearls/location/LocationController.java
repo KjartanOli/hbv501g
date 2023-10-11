@@ -24,7 +24,8 @@ public class LocationController {
 		model.addAttribute("traps", traps.subList(0, Math.min(5, traps.size())));
         return "index";
     }
-    public String getLocations(Model model){
+    
+	public String getLocations(Model model){
         return "";
     }
 
