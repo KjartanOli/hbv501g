@@ -15,7 +15,6 @@
         <ul>
             <li th:each="location : ${locations}">
                 <a th:href="@{/location/{id}(id=${location.id})}" th:text="${location.name}">Location Link</a>
-                
             </li>
         </ul>
     </div>
