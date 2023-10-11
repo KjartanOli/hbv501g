@@ -13,10 +13,9 @@
 
     <div id="location-list">
         <ul>
-            <!--/*@thymesVar id="location" type="java.lang.String"*/-->
             <li th:each="location : ${locations}">
-                <!--/*@thymesVar id="url" type="java.lang.String"*/-->
-                <a th:href="${url}" th:text="${location}">Location Link</a>
+                <a th:href="@{/location/{id}(id=${location.id})}" th:text="${location.name}">Location Link</a>
+                
             </li>
         </ul>
     </div>
