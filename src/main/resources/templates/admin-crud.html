@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin Management</title>
+</head>
+<body>
+    <h1>Admin Management</h1>
+
+    <form action="#" th:action="@{/admin}" th:object="${admin}" method="post">
+        <input type="hidden" th:field="*{id}">
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" th:field="*{username}"><br>
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" th:field="*{password}"><br>
+        <input type="submit" value="Submit">
+        <a href="/admin/list">Cancel</a>
+        <button type="button" th:if="${admin.id != null}" onclick="location.href='/admin/delete/' + document.getElementById('id').value">Delete</button>
+    </form>
+
+</body>
+</html>
