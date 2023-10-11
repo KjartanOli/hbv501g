@@ -3,8 +3,11 @@ package is.hi.hbv501g1.hidden_pearls.admin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import is.hi.hbv501g1.hidden_pearls.location.Location;
+import is.hi.hbv501g1.hidden_pearls.location.LocationCategory;
 import is.hi.hbv501g1.hidden_pearls.location.LocationService;
 import jakarta.servlet.http.HttpSession;
 
@@ -16,6 +19,18 @@ public class AdminController {
     private AdminService adminService;
     @Autowired
     private LocationService locationService;
+
+    @GetMapping("/admin/locations/new/")
+    public String newLocation(HttpSession session, Model model){
+        return "location-crud";
+    }
+
+    @GetMapping("/admin/locations/edit/{id}")
+    public String editLocation(@PathVariable String id ,HttpSession session, Model model){
+        var location = locationService.getLocation(Long.parseLong(id));
+        model.addAttribute("location", location);
+        return "location-crud";
+    }
 
     public String adminPage(HttpSession session, Model model){
         // Call a method in AdminService Class
@@ -37,10 +52,6 @@ public class AdminController {
     }
 
     public String deleteAdmin(HttpSession session, Model model){
-        return "";
-    }
-
-    public String getLocation(HttpSession session, Model model){
         return "";
     }
 
