@@ -15,10 +15,6 @@ public class LocationController {
 
 	@GetMapping("/")
     public String getHome(Model model){
-		// temp info
-		locationService.create("Geldingarnes", "Reykjavik", "An idilic island inside the city limits, good for a lovely sunset and some kayaking", LocationCategory.PEARL, null, null, null);
-		locationService.create("Hallgrímskirkja", "Reykjavik", "This iconic church dominates over the city skyline, but it's also dominated by tourists", LocationCategory.TRAP, null, null, null);
-
 		var pearls = locationService.searchByCategory(LocationCategory.PEARL);
 		var traps = locationService.searchByCategory(LocationCategory.TRAP);
 

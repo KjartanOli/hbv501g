@@ -24,7 +24,7 @@ public class Location {
 	@ElementCollection
 	private List<VisitStatistics> monthlyVisits;
 	// private List<Image> images;
-	
+
 	public long getId() {
 		return id;
 	}
@@ -52,7 +52,7 @@ public class Location {
 	public String getDescription() {
 		return description;
 	}
-	
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
@@ -81,13 +81,13 @@ public class Location {
 		this.monthlyVisits = monthlyVisits;
 	}
 
-	/* 	
+	/*
 	public List<Image> getImages() {
-	 	return images;
+		return images;
 	}
-	
+
 	public void setImages(List<Image> images) {
 		this.images = images;
-	} 
+	}
 	*/
 }
