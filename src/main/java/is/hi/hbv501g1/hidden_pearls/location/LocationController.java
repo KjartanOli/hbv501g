@@ -14,9 +14,6 @@ public class LocationController {
 
 	@GetMapping("/")
     public String getHome(Model model){
-		locationService.create("test1", "Reykjavik", "lorem ipsum", LocationCategory.PEARL, null, null, null);
-		locationService.create("test2", "Reykjavik", "dolor set", LocationCategory.TRAP, null, null, null);
-
 		var pearls = locationService.searchByCategory(LocationCategory.PEARL);
 		var traps = locationService.searchByCategory(LocationCategory.TRAP);
 
