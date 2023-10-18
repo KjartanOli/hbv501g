@@ -12,7 +12,7 @@ public class Admin {
     private long id;
     private String username;
     private String password;
-    
+
     public long getId() {
         return id;
     }
@@ -28,7 +28,7 @@ public class Admin {
 
     public void setUsername(String username) {
         this.username = username;
-    
+
     }
     public String getPassword() {
         return password;

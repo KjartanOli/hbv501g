@@ -14,7 +14,6 @@ import is.hi.hbv501g1.hidden_pearls.location.LocationCategory;
 import is.hi.hbv501g1.hidden_pearls.location.LocationService;
 import jakarta.servlet.http.HttpSession;
 
-// skeleton of implementation
 @Controller
 public class AdminController {
 
@@ -37,6 +36,20 @@ public class AdminController {
         return "location-crud";
     }
 
+	@GetMapping("/admin/admins/new")
+    public String newAdmin(HttpSession session, Model model){
+		// patchworks fix for now
+		model.addAttribute("admin", new Admin());
+        return "admin-crud";
+    }
+
+	@GetMapping("/admin/admins/edit/{id}")
+    public String editAdmin(@PathVariable String id ,HttpSession session, Model model){
+        var admin = adminService.getAdmin(Long.parseLong(id));
+		model.addAttribute("admin", admin);
+        return "admin-crud";
+    }
+
     public String adminPage(HttpSession session, Model model){
         // Call a method in AdminService Class
         // Add data to the Model
@@ -53,10 +66,6 @@ public class AdminController {
     }
 
     public String patchAdmin(HttpSession session, Model model){
-        return "";
-    }
-
-    public String deleteAdmin(HttpSession session, Model model){
         return "";
     }
 
@@ -95,10 +104,40 @@ public class AdminController {
 
 	@PostMapping("/admin/locations/edit/delete/{id}")
     public String deleteLocation(HttpSession session, Model model){
-
         Location locationToDelete = (Location) model.getAttribute("location");
 		if (locationToDelete != null) {
 			locationService.delete(locationToDelete.getId());
+			return "redirect:/admin";
+		}
+		else return "index";
+    }
+
+	@PostMapping("/admin/admins/new")
+	public String newAdmin(@ModelAttribute Admin admin, Model model, HttpSession session){
+		adminService.create(
+			admin.getUsername(),
+			admin.getPassword()
+			);
+
+		return "redirect:/admin";
+	}
+
+	@PostMapping("/admin/admins/edit/{id}")
+	public String editAdmin(@ModelAttribute Admin admin, Model model, HttpSession session){
+		adminService.update(
+            admin.getId(),
+			admin.getUsername(),
+			admin.getPassword()
+			);
+
+		return "redirect:/admin";
+	}
+
+	@PostMapping("/admin/admins/edit/delete/{id}")
+    public String deleteAdmin(HttpSession session, Model model){
+        Admin adminToDelete = (Admin) model.getAttribute("admin");
+		if (adminToDelete != null) {
+			adminService.delete(adminToDelete.getId());
 			return "redirect:/admin";
 		}
 		else return "index";

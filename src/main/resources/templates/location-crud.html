@@ -23,7 +23,6 @@
 		<a href="#" th:href="@{/}" class="btn">Cancel</a>
     </form>
 
-
 	<h1 th:unless="${location.name == null or location.name.isEmpty()}">Edit Location</h1>
     <form th:unless="${location.name == null or location.name.isEmpty()}" th:action="@{admin/locations/edit/{id}(id=${location.id})}" th:object="${location}" method="post">
         <input type="hidden" th:field="*{id}">

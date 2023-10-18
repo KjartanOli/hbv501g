@@ -4,16 +4,25 @@
     <title>Admin Management</title>
 </head>
 <body>
-    <h1>Admin Management</h1>
+    <h1 th:if="${admin.username == null or admin.username.isEmpty()}">Add New Admin</h1>
+    <form th:if="${admin.username == null or admin.username.isEmpty()}" action="#" th:action="@{/admin}" th:object="${admin}" method="post">
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" th:field="*{username}"><br>
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" th:field="*{password}"><br>
+        <input type="submit" value="Submit">
+        <a href="/admin/admins/list">Cancel</a>
+    </form>
 
-    <form action="#" th:action="@{/admin}" th:object="${admin}" method="post">
+	<h1 th:unless="${admin.username == null or admin.username.isEmpty()}">Edit Admin</h1>
+	<form th:unless="${admin.username == null or admin.username.isEmpty()}" action="#" th:action="@{/admin}" th:object="${admin}" method="post">
         <input type="hidden" th:field="*{id}">
         <label for="username">Username:</label><br>
         <input type="text" id="username" th:field="*{username}"><br>
         <label for="password">Password:</label><br>
         <input type="password" id="password" th:field="*{password}"><br>
         <input type="submit" value="Submit">
-        <a href="/admin/list">Cancel</a>
+        <a href="/admin/admins/list">Cancel</a>
         <button type="button" th:if="${admin.id != null}" onclick="location.href='/admin/delete/' + document.getElementById('id').value">Delete</button>
     </form>
 
