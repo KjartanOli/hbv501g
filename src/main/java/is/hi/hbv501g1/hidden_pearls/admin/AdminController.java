@@ -23,7 +23,7 @@ public class AdminController {
     @Autowired
     private LocationService locationService;
 
-    @GetMapping("/admin/locations/new/")
+    @GetMapping("/admin/locations/new")
     public String newLocation(HttpSession session, Model model){
 		// patchworks fix for now
 		model.addAttribute("location", new Location());
