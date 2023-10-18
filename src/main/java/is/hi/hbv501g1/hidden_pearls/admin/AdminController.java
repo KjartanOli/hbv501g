@@ -102,7 +102,7 @@ public class AdminController {
 		return "redirect:/admin";
 	}
 
-	@PostMapping("/admin/locations/delete/{id}")
+	@DeleteMapping("/admin/locations/delete/{id}")
     public String deleteLocation(@PathVariable String id, HttpSession session, Model model){
 		try {
 			locationService.delete(Long.parseLong(id));
