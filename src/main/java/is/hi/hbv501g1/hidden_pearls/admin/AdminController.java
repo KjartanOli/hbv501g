@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 import is.hi.hbv501g1.hidden_pearls.location.Location;
 import is.hi.hbv501g1.hidden_pearls.location.LocationCategory;
@@ -62,6 +63,20 @@ public class AdminController {
     public String patchLocation(HttpSession session, Model model){
         return "";
     }
+
+	@PostMapping("/admin/locations/new")
+	public String newLocation(@ModelAttribute Location location, Model model, HttpSession session){
+		locationService.create(
+			location.getName(),
+			location.getLocation(),
+			location.getDescription(),
+			location.getCategory(),
+			null,
+			null,
+			null);
+
+		return "redirect:/admin";
+	}
 
 	@PostMapping("/admin/locations/edit/{id}")
     public String deleteLocation(HttpSession session, Model model){
