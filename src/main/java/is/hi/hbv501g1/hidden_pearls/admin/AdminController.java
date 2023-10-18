@@ -102,14 +102,15 @@ public class AdminController {
 		return "redirect:/admin";
 	}
 
-	@PostMapping("/admin/locations/edit/delete/{id}")
-    public String deleteLocation(HttpSession session, Model model){
-        Location locationToDelete = (Location) model.getAttribute("location");
-		if (locationToDelete != null) {
-			locationService.delete(locationToDelete.getId());
+	@PostMapping("/admin/locations/delete/{id}")
+    public String deleteLocation(@PathVariable String id, HttpSession session, Model model){
+		try {
+			locationService.delete(Long.parseLong(id));
 			return "redirect:/admin";
 		}
-		else return "index";
+		catch (Exception e) {
+			return "redirect:/error";
+		}
     }
 
 	@PostMapping("/admin/admins/new")
