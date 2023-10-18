@@ -5,7 +5,7 @@
 </head>
 <body>
     <h1 th:if="${location.name == null or location.name.isEmpty()}">Add New Location</h1>
-    <form th:if="${location.name == null or location.name.isEmpty()}" action="#" th:action="@{admin/locations/new/}" th:object="${location}" method="post">
+    <form th:if="${location.name == null or location.name.isEmpty()}" th:action="@{/admin/locations/new}" th:object="${location}" method="post">
         <label for="name">Name:</label><br>
         <input type="text" id="name" th:field="*{name}"><br>
         <label for="location">Location:</label><br>
@@ -25,7 +25,7 @@
 
 
 	<h1 th:unless="${location.name == null or location.name.isEmpty()}">Edit Location</h1>
-    <form th:unless="${location.name == null or location.name.isEmpty()}" action="#" th:action="@{admin/locations/edit/}" th:object="${location}" method="post">
+    <form th:unless="${location.name == null or location.name.isEmpty()}" th:action="@{admin/locations/edit/{id}(id=${location.id})}" th:object="${location}" method="post">
         <input type="hidden" th:field="*{id}">
         <!-- form fields, need to populate with existing info -->
         <label for="name">Name:</label><br>
