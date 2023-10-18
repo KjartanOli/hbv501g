@@ -78,7 +78,22 @@ public class AdminController {
 		return "redirect:/admin";
 	}
 
-	@PostMapping("/admin/locations/edit/{id}")
+    @PostMapping("/admin/locations/edit/{id}")
+	public String editLocation(@ModelAttribute Location location, Model model, HttpSession session){
+		locationService.update(
+            location.getId(),
+			location.getName(),
+			location.getLocation(),
+			location.getDescription(),
+			location.getCategory(),
+			null,
+			null,
+			null);
+
+		return "redirect:/admin";
+	}
+
+	@PostMapping("/admin/locations/edit/delete/{id}")
     public String deleteLocation(HttpSession session, Model model){
 
         Location locationToDelete = (Location) model.getAttribute("location");
