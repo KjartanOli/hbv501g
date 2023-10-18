@@ -15,7 +15,7 @@ public class Location {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
 	private String name;
-	private String location;
+	private String loc;
 	private String description;
 	private LocationCategory category;
 	@ElementCollection
@@ -42,13 +42,27 @@ public class Location {
 
 	}
 
+	/*
+	The Loc getter and setter appear necessary for Spring to handle
+    form submission correctly.  The Location getter and setter are
+    significantly more readable and should be preferred in our code.
+	 */
+	public String getLoc() {
+		return this.loc;
+	}
+
 	public String getLocation() {
-		return this.location;
+		return this.getLoc();
+	}
+
+	public void setLoc(String location) {
+		this.loc = location;
 	}
 
 	public void setLocation(String location) {
-		this.location = location;
+		this.setLoc(location);
 	}
+
 	public String getDescription() {
 		return description;
 	}
