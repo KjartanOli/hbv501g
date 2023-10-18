@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin Landing Page</title>
+</head>
+<body>
+    <h1>Welcome, Admin!</h1>
+    <button onclick="location.href='/logout'" type="button">Logout</button>
+    <ul>
+        <li><a href="@{${locationListUrl}}">Locations List</a></li>
+        <li><a href="@{${adminListUrl}}">Admins List</a></li>
+    </ul>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin List</title>
+</head>
+<body>
+    <div id="search-bar">
+        <form action="#" th:action="@{/search}" method="get">
+            <input type="text" th:name="query" placeholder="Search for a pearl or a trap..." />
+            <button type="submit">Search</button>
+        </form>
+    </div>
+	<button onclick="location.href='/logout'" type="button">Logout</button>
+    <a href="@{${createAdminUrl}}">Create New Admin</a>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Action</th>
+        </tr>
+        <tr th:each="admin : ${adminList}">
+            <td><a th:href="@{${adminDetailsUrl}(admin=${admin.id})}" th:text="${admin.name}">Admin Name</a></td>
+            <td><button onclick="location.href='@{${deleteAdminUrl}(admin=${admin.id})}'" type="button">Delete</button></td>
+        </tr>
+    </table>
+</body>
+</html>
