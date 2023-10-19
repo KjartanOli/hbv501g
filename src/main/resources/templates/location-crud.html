@@ -44,7 +44,7 @@
 		<a href="#" th:href="@{/}" class="btn">Cancel</a>
     </form>
     <!-- delete button, needs to take us back to previous page too -->
-    <form th:unless="${location.name == null or location.name.isEmpty()}" th:action="@{/admin/locations/delete/{id}(id=${location.id})}" th:object="${location}" method="delete">
+    <form th:unless="${location.name == null or location.name.isEmpty()}" th:action="@{/admin/locations/delete/{id}(id=${location.id})}" th:object="${location}" method="post">
         <input type="hidden" th:field="*{id}">
         <input type="submit" value="Delete">
     </form>
