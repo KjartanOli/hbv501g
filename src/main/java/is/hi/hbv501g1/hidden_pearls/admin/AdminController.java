@@ -50,9 +50,11 @@ public class AdminController {
         return "admin-crud";
     }
 
-    public String adminPage(HttpSession session, Model model){
+    @GetMapping("/admin")
+	public String adminPage(HttpSession session, Model model){
         // Call a method in AdminService Class
         // Add data to the Model
+		// Check for login
 
         return "admin";
     }
@@ -61,8 +63,9 @@ public class AdminController {
         return "";
     }
 
+	@GetMapping("/admin/admins")
     public String getAdmins(HttpSession session, Model model){
-        return "";
+        return "admin-list";
     }
 
     public String patchAdmin(HttpSession session, Model model){
