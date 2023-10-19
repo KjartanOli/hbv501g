@@ -11,7 +11,7 @@
         <label for="password">Password:</label><br>
         <input type="password" id="password" th:field="*{password}"><br>
         <input type="submit" value="Submit">
-        <a href="/admin/admins/list">Cancel</a>
+        <a href="/admin/admins">Cancel</a>
     </form>
 
 	<h1 th:unless="${admin.username == null or admin.username.isEmpty()}">Edit Admin</h1>
@@ -22,7 +22,7 @@
         <label for="password">Password:</label><br>
         <input type="password" id="password" th:field="*{password}"><br>
         <input type="submit" value="Submit">
-        <a href="/admin/admins/list">Cancel</a>
+        <a href="/admin/admins">Cancel</a>
         <button type="button" th:if="${admin.id != null}" onclick="location.href='/admin/delete/' + document.getElementById('id').value">Delete</button>
     </form>
 

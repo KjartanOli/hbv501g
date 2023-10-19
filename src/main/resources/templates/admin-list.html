@@ -11,7 +11,7 @@
         </form>
     </div>
 	<button onclick="location.href='/logout'" type="button">Logout</button>
-    <a href="@{${admins/new}}">Create New Admin</a>
+    <a href="/admin/admins/new">Create New Admin</a>
     <table>
         <tr>
             <th>Name</th>
@@ -22,5 +22,6 @@
             <td><button onclick="location.href='@{${admin/admins/delete/{id}}(admin=${admin.id})}'" type="button">Delete</button></td>
         </tr>
     </table>
+	<a href="/admin">Back to Admin Page</a>
 </body>
 </html>
