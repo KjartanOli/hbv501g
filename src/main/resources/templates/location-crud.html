@@ -19,14 +19,12 @@
         <label for="tags">Tags:</label><br>
         <input type="text" id="tags" name="tags"><br>
         <input type="submit" value="Save">
-        <!-- cancel button, need link to correct location -->
 		<a href="/admin" class="btn">Cancel</a>
     </form>
 
 	<h1 th:unless="${location.name == null or location.name.isEmpty()}">Edit Location</h1>
     <form th:unless="${location.name == null or location.name.isEmpty()}" th:action="@{/admin/locations/edit/{id}(id=${location.id})}" th:object="${location}" method="post">
         <input type="hidden" th:field="*{id}">
-        <!-- form fields, need to populate with existing info -->
         <label for="name">Name:</label><br>
         <input type="text" id="name" th:field="*{name}"><br>
         <label for="location">Location:</label><br>
@@ -40,10 +38,8 @@
         <label for="tags">Tags:</label><br>
         <input type="text" id="tags" name="tags"><br>
         <input type="submit" value="Save">
-        <!-- cancel button, need link to correct location -->
 		<a href="/admin" class="btn">Cancel</a>
     </form>
-    <!-- delete button, needs to take us back to previous page too -->
     <form th:unless="${location.name == null or location.name.isEmpty()}" th:action="@{/admin/locations/delete/{id}(id=${location.id})}" th:object="${location}" method="post">
         <input type="hidden" th:field="*{id}">
         <input type="submit" value="Delete">

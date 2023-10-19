@@ -3,14 +3,12 @@ package is.hi.hbv501g1.hidden_pearls.admin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import is.hi.hbv501g1.hidden_pearls.location.Location;
-import is.hi.hbv501g1.hidden_pearls.location.LocationCategory;
 import is.hi.hbv501g1.hidden_pearls.location.LocationService;
 import jakarta.servlet.http.HttpSession;
 
@@ -22,9 +20,10 @@ public class AdminController {
     @Autowired
     private LocationService locationService;
 
+	// get methods for location management
+
     @GetMapping("/admin/locations/new")
     public String newLocation(HttpSession session, Model model){
-		// patchworks fix for now
 		model.addAttribute("location", new Location());
         return "location-crud";
     }
@@ -36,9 +35,14 @@ public class AdminController {
         return "location-crud";
     }
 
+	public String patchLocation(HttpSession session, Model model){
+        return "";
+    }
+
+	// get methods for admin management
+
 	@GetMapping("/admin/admins/new")
     public String newAdmin(HttpSession session, Model model){
-		// patchworks fix for now
 		model.addAttribute("admin", new Admin());
         return "admin-crud";
     }
@@ -59,22 +63,20 @@ public class AdminController {
         return "admin";
     }
 
-    public String getAdmin(HttpSession session, Model model){
-        return "";
-    }
-
 	@GetMapping("/admin/admins")
     public String getAdmins(HttpSession session, Model model){
         return "admin-list";
+    }
+
+    public String getAdmin(HttpSession session, Model model){
+        return "";
     }
 
     public String patchAdmin(HttpSession session, Model model){
         return "";
     }
 
-    public String patchLocation(HttpSession session, Model model){
-        return "";
-    }
+	// post methods related to location management
 
 	@PostMapping("/admin/locations/new")
 	public String newLocation(@ModelAttribute Location location, Model model, HttpSession session){
@@ -115,6 +117,8 @@ public class AdminController {
 			return "redirect:/error";
 		}
     }
+
+	// post methods related to admin management
 
 	@PostMapping("/admin/admins/new")
 	public String newAdmin(@ModelAttribute Admin admin, Model model, HttpSession session){
