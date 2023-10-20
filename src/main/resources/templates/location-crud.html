@@ -1,48 +1,57 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <title>Location Management</title>
+	<title>Location Management</title>
 </head>
+
 <body>
-    <h1 th:if="${location.name == null or location.name.isEmpty()}">Add New Location</h1>
-    <form th:if="${location.name == null or location.name.isEmpty()}" th:action="@{/admin/locations/new}" th:object="${location}" method="post">
-        <label for="name">Name:</label><br>
-        <input type="text" id="name" th:field="*{name}"><br>
-        <label for="location">Location:</label><br>
-        <input type="text" id="location" th:field="*{loc}"><br>
-        <label for="description">Description:</label><br>
-        <textarea id="description" th:field="*{description}"></textarea><br>
-        <label for="category">Category:</label><br>
-        <select id="category" th:field="*{category}">
-            <option th:each="cat : ${T(is.hi.hbv501g1.hidden_pearls.location.LocationCategory).values()}" th:value="${cat}" th:text="${cat}"></option>
-        </select><br>
-        <label for="tags">Tags:</label><br>
-        <input type="text" id="tags" name="tags"><br>
-        <input type="submit" value="Save">
+	<h1 th:if="${location.name == null or location.name.isEmpty()}">Add New Location</h1>
+	<form th:if="${location.name == null or location.name.isEmpty()}" th:action="@{/admin/locations/new}"
+		th:object="${location}" method="post">
+		<label for="name">Name:</label><br>
+		<input type="text" id="name" th:field="*{name}"><br>
+		<label for="location">Location:</label><br>
+		<input type="text" id="location" th:field="*{loc}"><br>
+		<label for="description">Description:</label><br>
+		<textarea id="description" th:field="*{description}"></textarea><br>
+		<label for="category">Category:</label><br>
+		<select id="category" th:field="*{category}">
+			<option th:each="cat : ${T(is.hi.hbv501g1.hidden_pearls.location.LocationCategory).values()}"
+				th:value="${cat}" th:text="${cat}"></option>
+		</select><br>
+		<label for="tags">Tags:</label><br>
+		<input type="text" id="tags" name="tags"><br>
+		<input type="submit" value="Save">
 		<a href="/admin" class="btn">Cancel</a>
-    </form>
+	</form>
 
 	<h1 th:unless="${location.name == null or location.name.isEmpty()}">Edit Location</h1>
-    <form th:unless="${location.name == null or location.name.isEmpty()}" th:action="@{/admin/locations/edit/{id}(id=${location.id})}" th:object="${location}" method="post">
-        <input type="hidden" th:field="*{id}">
-        <label for="name">Name:</label><br>
-        <input type="text" id="name" th:field="*{name}"><br>
-        <label for="location">Location:</label><br>
-        <input type="text" id="location" th:field="*{loc}"><br>
-        <label for="description">Description:</label><br>
-        <textarea id="description" th:field="*{description}"></textarea><br>
-        <label for="category">Category:</label><br>
-        <select id="category" th:field="*{category}">
-            <option th:each="cat : ${T(is.hi.hbv501g1.hidden_pearls.location.LocationCategory).values()}" th:value="${cat}" th:text="${cat}"></option>
-        </select><br>
-        <label for="tags">Tags:</label><br>
-        <input type="text" id="tags" name="tags"><br>
-        <input type="submit" value="Save">
+	<form th:unless="${location.name == null or location.name.isEmpty()}"
+		th:action="@{/admin/locations/edit/{id}(id=${location.id})}" th:object="${location}" method="post">
+		<input type="hidden" th:field="*{id}">
+		<label for="name">Name:</label><br>
+		<input type="text" id="name" th:field="*{name}"><br>
+		<label for="location">Location:</label><br>
+		<input type="text" id="location" th:field="*{loc}"><br>
+		<label for="description">Description:</label><br>
+		<textarea id="description" th:field="*{description}"></textarea><br>
+		<label for="category">Category:</label><br>
+		<select id="category" th:field="*{category}">
+			<option th:each="cat : ${T(is.hi.hbv501g1.hidden_pearls.location.LocationCategory).values()}"
+				th:value="${cat}" th:text="${cat}"></option>
+		</select><br>
+		<label for="tags">Tags:</label><br>
+		<input type="text" id="tags" name="tags"><br>
+		<input type="submit" value="Save">
 		<a href="/admin" class="btn">Cancel</a>
-    </form>
-    <form th:unless="${location.name == null or location.name.isEmpty()}" th:action="@{/admin/locations/delete/{id}(id=${location.id})}" th:object="${location}" method="post">
-        <input type="hidden" th:field="*{id}">
-        <input type="submit" value="Delete">
-    </form>
+	</form>
+
+	<form th:unless="${location.name == null or location.name.isEmpty()}"
+		th:action="@{/admin/locations/delete/{id}(id=${location.id})}" th:object="${location}" method="post">
+		<input type="hidden" th:field="*{id}">
+		<input type="submit" value="Delete">
+	</form>
 </body>
+
 </html>

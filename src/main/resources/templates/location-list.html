@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Location List</title>
-</head>
-<body>
-    <div id="search-bar">
-        <form action="#" th:action="@{/search}" method="get">
-            <input type="text" th:name="query" placeholder="Search for a pearl or a trap..." />
-            <button type="submit">Search</button>
-        </form>
-    </div>
 
-    <div id="location-list">
-        <ul>
-            <li th:each="location : ${locations}">
-                <a th:href="@{/location/{id}(id=${location.id})}" th:text="${location.name}">Location Link</a>
-            </li>
-        </ul>
-    </div>
+<head>
+	<title>Location List</title>
+</head>
+
+<body>
+	<div id="search-bar">
+		<form action="#" th:action="@{/search}" method="get">
+			<input type="text" th:name="query" placeholder="Search for a pearl or a trap..." />
+			<button type="submit">Search</button>
+		</form>
+	</div>
+
+	<div id="location-list">
+		<ul>
+			<li th:each="location : ${locations}">
+				<a th:href="@{/location/{id}(id=${location.id})}" th:text="${location.name}">Location Link</a>
+			</li>
+		</ul>
+	</div>
 </body>
+
 </html>

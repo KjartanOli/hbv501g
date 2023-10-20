@@ -7,9 +7,9 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface LocationRepository extends CrudRepository<Location, Long> {
 	public List<Location> findAll();
-	
+
 	public Location findById(long id);
-	
+
 	public List<Location> findByNameLike(String name);
 
 	// public List<Location> findByTag(String tag);

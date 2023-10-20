@@ -1,27 +1,31 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <title>Admin List</title>
+	<title>Admin List</title>
 </head>
+
 <body>
-    <div id="search-bar">
-        <form action="#" th:action="@{/search}" method="get">
-            <input type="text" th:name="query" placeholder="Search for an admin..." />
-            <button type="submit">Search</button>
-        </form>
-    </div>
+	<div id="search-bar">
+		<form action="#" th:action="@{/search}" method="get">
+			<input type="text" th:name="query" placeholder="Search for an admin..." />
+			<button type="submit">Search</button>
+		</form>
+	</div>
 	<button onclick="location.href='/logout'" type="button">Logout</button>
-    <a href="/admin/admins/new">Create New Admin</a>
-    <table>
-        <tr>
-            <th>Name</th>
-            <th>Action</th>
-        </tr>
-        <tr th:each="admin : ${adminList}">
-            <td><a th:href="@{${/admins/edit/{id}}(admin=${admin.id})}" th:text="${admin.name}">Admin Name</a></td>
-            <td><button onclick="location.href='@{${admin/admins/delete/{id}}(admin=${admin.id})}'" type="button">Delete</button></td>
-        </tr>
-    </table>
+	<a href="/admin/admins/new">Create New Admin</a>
+	<table>
+		<tr>
+			<th>Name</th>
+			<th>Action</th>
+		</tr>
+		<tr th:each="admin : ${adminList}">
+			<td><a th:href="@{${/admins/edit/{id}}(admin=${admin.id})}" th:text="${admin.name}">Admin Name</a></td>
+			<td><button onclick="location.href='@{${admin/admins/delete/{id}}(admin=${admin.id})}'"
+					type="button">Delete</button></td>
+		</tr>
+	</table>
 	<a href="/admin">Back to Admin Page</a>
 </body>
+
 </html>
