@@ -8,10 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 @Controller
 public class LocationController {
-	
+
 	@Autowired
     private LocationService locationService;
-	private String attributeName;
 
 	@GetMapping("/")
     public String getHome(Model model){
@@ -22,7 +21,7 @@ public class LocationController {
 		model.addAttribute("traps", traps.subList(0, Math.min(5, traps.size())));
         return "index";
     }
-    
+
 	@GetMapping("/location-list")
 	public String getLocations(Model model){
         var locations = locationService.getAllLocations();
