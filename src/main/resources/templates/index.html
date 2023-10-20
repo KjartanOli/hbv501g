@@ -1,37 +1,48 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <meta charset="UTF-8"/>
-    <title>Hidden Pearls</title>
-  </head>
-  <body>
-    <main>
-      <h1>Hidden Pearls</h1>
-      <div id="pearls">
-        <h2>Pearls</h2>
-        <ul>
-          <li th:each="location : ${pearls}">
-            <span th:text="${location.name}"></span>
-            <span th:text="${location.location}"></span>
-            <div th:text="${location.description}"></div>
-            <a th:href="@{/location/{id}(id=${location.id})}">See more</a>
-          </li>
-        </ul>
-      </div>
-      <div id="traps">
-        <h2>Traps</h2>
-        <ul>
-          <li th:each="location : ${traps}">
-            <span th:text="${location.name}"></span>
-            <span th:text="${location.location}"></span>
-            <div th:text="${location.description}"></div>
-            <a th:href="@{/location/{id}(id=${location.id})}">See more</a>
-          </li>
-        </ul>
-      </div>
-      <div>
-        <a href="/location-list">View All Pearls and Traps</a>
-      </div>
-    </main>
-  </body>
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Hidden Pearls</title>
+</head>
+
+<body>
+	<main>
+		<h1>Hidden Pearls</h1>
+
+		<div id="search-bar">
+			<form action="#" th:action="@{/search}" method="get">
+				<input type="text" th:name="query" placeholder="Search for a pearl or a trap..." />
+				<button type="submit">Search</button>
+			</form>
+		</div>
+
+		<div id="pearls">
+			<h2>Pearls</h2>
+			<ul>
+				<li th:each="location : ${pearls}">
+					<span th:text="${location.name}"></span>
+					<span th:text="${location.location}"></span>
+					<div th:text="${location.description}"></div>
+					<a th:href="@{/location/{id}(id=${location.id})}">See more</a>
+				</li>
+			</ul>
+		</div>
+		<div id="traps">
+			<h2>Traps</h2>
+			<ul>
+				<li th:each="location : ${traps}">
+					<span th:text="${location.name}"></span>
+					<span th:text="${location.location}"></span>
+					<div th:text="${location.description}"></div>
+					<a th:href="@{/location/{id}(id=${location.id})}">See more</a>
+				</li>
+			</ul>
+		</div>
+		<div>
+			<a href="/location-list">View All Pearls and Traps</a>
+		</div>
+	</main>
+</body>
+
 </html>
