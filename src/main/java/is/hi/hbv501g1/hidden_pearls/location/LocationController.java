@@ -45,7 +45,7 @@ public class LocationController {
     }
 
 	@GetMapping("/search")
-    public String search(@RequestParam("query") String query, Model model) {
+    public String searchLocation(@RequestParam("query") String query, Model model) {
         List<Location> locations = locationService.searchByName(query);
         model.addAttribute("locations", locations);
         return "location-list";
