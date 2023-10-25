@@ -68,6 +68,14 @@ public class AdminController {
         return "admin-list";
     }
 
+    public String getAdmin(HttpSession session, Model model){
+        return "";
+    }
+
+    public String patchAdmin(HttpSession session, Model model){
+        return "";
+    }
+
 	// post methods related to location management
 
 	@PostMapping("/admin/locations/new")
@@ -114,10 +122,16 @@ public class AdminController {
 
 	@PostMapping("/admin/admins/new")
 	public String newAdmin(@ModelAttribute Admin admin, Model model, HttpSession session){
-		adminService.create(
-			admin.getUsername(),
-			admin.getPassword()
+		// check if username is already taken, return to admin-crud with error msg
+		try {
+			adminService.create(
+				admin.getUsername(),
+				admin.getPassword()
 			);
+		} catch (IllegalArgumentException e) {
+			model.addAttribute("error", "Admin username taken");
+			return "admin-crud";
+		}
 
 		return "redirect:/admin";
 	}

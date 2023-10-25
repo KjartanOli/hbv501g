@@ -7,26 +7,29 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class AdminServiceImplementation implements AdminService{
-    
+
     @Autowired
     private AdminRepository repository;
-    
+
     public List<Admin> getAllAdmins() {
         return repository.findAll();
     }
-    
+
     public Admin getAdmin(long id) {
         return repository.findById(id);
     }
 
-    public Admin create(String username, String password) {
-        var ad = new Admin();
-        
+    public Admin create(String username, String password) throws IllegalArgumentException  {
+        Admin existingAdmin = repository.findByUsername(username);
+		if (existingAdmin != null) {
+			throw new IllegalArgumentException("Username already exists");
+    	}
+
+		var ad = new Admin();
         ad.setUsername(username);
         ad.setPassword(password);
-        
-        return repository.save(ad);
 
+        return repository.save(ad);
     }
 
     public Admin update(long id, String username, String password) {
