@@ -3,10 +3,10 @@
 
 ## Members
 
--Kjartan Óli Ágústsson
--María Orradóttir
--Svana Kristín Elísdóttir
--Sverrir Sigfússon
+- Kjartan Óli Ágústsson
+- María Orradóttir
+- Svana Kristín Elísdóttir
+- Sverrir Sigfússon
 
 ## Execution
 
