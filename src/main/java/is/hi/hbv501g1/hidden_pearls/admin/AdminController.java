@@ -20,7 +20,8 @@ public class AdminController {
     @Autowired
     private LocationService locationService;
 
-	// get methods for location management
+	// location management
+	// get methods
 
     @GetMapping("/admin/locations/new")
     public String newLocation(HttpSession session, Model model){
@@ -39,44 +40,7 @@ public class AdminController {
         return "";
     }
 
-	// get methods for admin management
-
-	@GetMapping("/admin/admins/new")
-    public String newAdmin(HttpSession session, Model model){
-		model.addAttribute("admin", new Admin());
-        return "admin-crud";
-    }
-
-	@GetMapping("/admin/admins/edit/{id}")
-    public String editAdmin(@PathVariable String id ,HttpSession session, Model model){
-        var admin = adminService.getAdmin(Long.parseLong(id));
-		model.addAttribute("admin", admin);
-        return "admin-crud";
-    }
-
-    @GetMapping("/admin")
-	public String adminPage(HttpSession session, Model model){
-        // Call a method in AdminService Class
-        // Add data to the Model
-		// Check for login
-
-        return "admin";
-    }
-
-	@GetMapping("/admin/admins")
-    public String getAdmins(HttpSession session, Model model){
-        return "admin-list";
-    }
-
-    public String getAdmin(HttpSession session, Model model){
-        return "";
-    }
-
-    public String patchAdmin(HttpSession session, Model model){
-        return "";
-    }
-
-	// post methods related to location management
+	// post methods
 
 	@PostMapping("/admin/locations/new")
 	public String newLocation(@ModelAttribute Location location, Model model, HttpSession session){
@@ -118,7 +82,45 @@ public class AdminController {
 		}
     }
 
-	// post methods related to admin management
+	// admin management
+	// get methods
+
+	@GetMapping("/admin/admins/new")
+    public String newAdmin(HttpSession session, Model model){
+		model.addAttribute("admin", new Admin());
+        return "admin-crud";
+    }
+
+	@GetMapping("/admin/admins/edit/{id}")
+    public String editAdmin(@PathVariable String id ,HttpSession session, Model model){
+        var admin = adminService.getAdmin(Long.parseLong(id));
+		model.addAttribute("admin", admin);
+        return "admin-crud";
+    }
+
+    @GetMapping("/admin")
+	public String adminPage(HttpSession session, Model model){
+        // Call a method in AdminService Class
+        // Add data to the Model
+		// Check for login
+
+        return "admin";
+    }
+
+	@GetMapping("/admin/admins")
+    public String getAdmins(HttpSession session, Model model){
+        return "admin-list";
+    }
+
+    public String getAdmin(HttpSession session, Model model){
+        return "";
+    }
+
+    public String patchAdmin(HttpSession session, Model model){
+        return "";
+    }
+
+	// post methods
 
 	@PostMapping("/admin/admins/new")
 	public String newAdmin(@ModelAttribute Admin admin, Model model, HttpSession session){
