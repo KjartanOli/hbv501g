@@ -68,14 +68,6 @@ public class AdminController {
         return "admin-list";
     }
 
-    public String getAdmin(HttpSession session, Model model){
-        return "";
-    }
-
-    public String patchAdmin(HttpSession session, Model model){
-        return "";
-    }
-
 	// post methods related to location management
 
 	@PostMapping("/admin/locations/new")
