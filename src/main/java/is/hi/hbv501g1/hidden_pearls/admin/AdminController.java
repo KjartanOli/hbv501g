@@ -40,7 +40,65 @@ public class AdminController {
         return "";
     }
 
-	// post methods
+	// get methods for admin management
+
+	@GetMapping("/admin/admins/new")
+    public String newAdmin(HttpSession session, Model model){
+		model.addAttribute("admin", new Admin());
+        return "admin-crud";
+    }
+
+	@GetMapping("/admin/admins/edit/{id}")
+    public String editAdmin(@PathVariable String id ,HttpSession session, Model model){
+        var admin = adminService.getAdmin(Long.parseLong(id));
+		model.addAttribute("admin", admin);
+        return "admin-crud";
+    }
+
+    @GetMapping("/admin")
+	public String adminPage(HttpSession session, Model model){
+        // Call a method in AdminService Class
+        // Add data to the Model
+		// Check for login
+
+        return "admin";
+    }
+
+	@GetMapping("/admin/admins")
+    public String getAdmins(HttpSession session, Model model){
+        return "admin-list";
+    }
+
+	@GetMapping("/admin/login")
+	public String getLogin(HttpSession session, Model model){
+		model.addAttribute("admin", new Admin());
+		return "admin-login";
+	}
+
+    public String getAdmin(HttpSession session, Model model){
+        return "";
+    }
+
+    public String patchAdmin(HttpSession session, Model model){
+        return "";
+    }
+
+	// post methods related to location management
+	@PostMapping("/admin/login")
+	public String login(@ModelAttribute Admin admin, Model model, HttpSession session){
+		var auth = adminService.authenticate(admin.getUsername(), admin.getPassword());
+
+		if (auth == null)
+			{
+				// TODO add error message
+				System.err.println("Invalid username or password");
+				return "redirect:/admin/login";
+			}
+
+		session.setAttribute("admin", auth);
+
+		return "redirect:/admin";
+	}
 
 	@PostMapping("/admin/locations/new")
 	public String newLocation(@ModelAttribute Location location, Model model, HttpSession session){

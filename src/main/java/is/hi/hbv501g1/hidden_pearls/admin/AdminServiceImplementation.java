@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 
 @Service
 public class AdminServiceImplementation implements AdminService{
@@ -19,15 +20,19 @@ public class AdminServiceImplementation implements AdminService{
         return repository.findById(id);
     }
 
-    public Admin create(String username, String password) throws IllegalArgumentException  {
-        Admin existingAdmin = repository.findByUsername(username);
+	public Admin create(String username, String password) {
+		Admin existingAdmin = repository.findByUsername(username);
 		if (existingAdmin != null) {
 			throw new IllegalArgumentException("Username already exists");
     	}
 
-		var ad = new Admin();
+		var passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+        var ad = new Admin();
+
+		var hash = passwordEncoder.encode(password);
+
         ad.setUsername(username);
-        ad.setPassword(password);
+        ad.setPassword(hash);
 
         return repository.save(ad);
     }
@@ -50,7 +55,18 @@ public class AdminServiceImplementation implements AdminService{
     }
 
     // return type is PLACEHOLDER, implementation pending
-    public void authenticate(String username, String password) {
+    public Admin authenticate(String username, String password) {
+		var admin = repository.findByUsername(username);
+
+		if (admin == null)
+			return null;
+
+		var passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+
+		if (!passwordEncoder.matches(password, admin.getPassword()))
+			return null;
+
+		return admin;
     }
 
 }

@@ -8,7 +8,7 @@
 <body>
 	<h1 th:if="${admin.username == null or admin.username.isEmpty()}">Add New Admin</h1>
 	<p th:if="${error}" th:text="${error}" style="color: red;"></p>
-	<form th:if="${admin.username == null or admin.username.isEmpty()}" th:action="@{/admin}" th:object="${admin}"
+	<form th:if="${admin.username == null or admin.username.isEmpty()}" action="/admin/admins/new" th:object="${admin}"
 		method="post">
 		<label for="username">Username:</label><br>
 		<input type="text" id="username" th:field="*{username}"><br>
@@ -19,7 +19,7 @@
 	</form>
 
 	<h1 th:unless="${admin.username == null or admin.username.isEmpty()}">Edit Admin</h1>
-	<form th:unless="${admin.username == null or admin.username.isEmpty()}" th:action="@{/admin}" th:object="${admin}"
+	<form th:unless="${admin.username == null or admin.username.isEmpty()}" th:action="/admin/admins/new" th:object="${admin}"
 		method="post">
 		<input type="hidden" th:field="*{id}">
 		<label for="username">Username:</label><br>
