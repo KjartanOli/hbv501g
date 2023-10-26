@@ -6,13 +6,17 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.jpa.repository.Query;
 
 public interface AdminRepository extends CrudRepository<Admin, Long>{
-    public List<Admin> findAll();
 
-    public Admin findById(long id);
-    public Admin findByUsername(String username);
+	public List<Admin> findAll();
 
-    public Admin save(Admin admin);
+	public Admin findById(long id);
 
-    public void delete(Admin admin);
+	public Admin findByUsername(String username);
+
+	public List<Admin> findByUsernameLike(String username);
+
+	public Admin save(Admin admin);
+
+	public void delete(Admin admin);
 
 }

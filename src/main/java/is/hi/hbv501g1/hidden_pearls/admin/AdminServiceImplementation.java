@@ -40,9 +40,6 @@ public class AdminServiceImplementation implements AdminService{
     public Admin update(long id, String username, String password) {
         var ad = getAdmin(id);
 
-        // spurning með if-klásur til að geta uppfært
-        // bara annaðhvort
-        ad.setUsername(username);
         ad.setPassword(password);
 
         return repository.save(ad);
@@ -54,7 +51,11 @@ public class AdminServiceImplementation implements AdminService{
             repository.delete(ad);
     }
 
-    // return type is PLACEHOLDER, implementation pending
+	@Override
+    public List<Admin> searchByName(String name) {
+        return repository.findByUsernameLike(name);
+    }
+
     public Admin authenticate(String username, String password) {
 		var admin = repository.findByUsername(username);
 

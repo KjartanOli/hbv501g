@@ -17,7 +17,6 @@ public class Admin {
         return id;
     }
 
-    // þessa þarf mögulega ekki; mögulegt samt að Spring noti það
     public void setId(long id) {
         this.id = id;
     }
@@ -29,7 +28,7 @@ public class Admin {
     public void setUsername(String username) {
         this.username = username;
     }
-    
+
     public String getPassword() {
         return password;
     }
