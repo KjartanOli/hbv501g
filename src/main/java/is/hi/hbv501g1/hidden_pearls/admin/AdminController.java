@@ -68,6 +68,12 @@ public class AdminController {
         return "admin-list";
     }
 
+	@GetMapping("/admin/login")
+	public String getLogin(HttpSession session, Model model){
+		model.addAttribute("admin", new Admin());
+		return "admin-login";
+	}
+
     public String getAdmin(HttpSession session, Model model){
         return "";
     }
