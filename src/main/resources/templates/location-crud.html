@@ -23,7 +23,7 @@
 		<label for="tags">Tags:</label><br>
 		<input type="text" id="tags" name="tags"><br>
 		<input type="submit" value="Save">
-		<a href="/admin" class="btn">Cancel</a>
+		<button type="button" onclick="location.href='/admin'">Cancel</button>
 	</form>
 
 	<h1 th:unless="${location.name == null or location.name.isEmpty()}">Edit Location</h1>
@@ -44,7 +44,7 @@
 		<label for="tags">Tags:</label><br>
 		<input type="text" id="tags" name="tags"><br>
 		<input type="submit" value="Save">
-		<a href="/admin" class="btn">Cancel</a>
+		<button type="button" onclick="location.href='/admin'">Cancel</button>
 	</form>
 
 	<form th:unless="${location.name == null or location.name.isEmpty()}"
