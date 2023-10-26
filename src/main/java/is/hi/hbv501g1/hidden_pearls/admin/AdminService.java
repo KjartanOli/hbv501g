@@ -15,6 +15,6 @@ public interface AdminService {
     public void delete(long id);
 
     // return type is PLACEHOLDER
-    public void authenticate(String username, String password);
+    public Admin authenticate(String username, String password);
 
 }

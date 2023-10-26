@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 
 @Service
 public class AdminServiceImplementation implements AdminService{
@@ -20,13 +21,15 @@ public class AdminServiceImplementation implements AdminService{
     }
 
     public Admin create(String username, String password) {
+		var passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
         var ad = new Admin();
-        
-        ad.setUsername(username);
-        ad.setPassword(password);
-        
-        return repository.save(ad);
 
+		var hash = passwordEncoder.encode(password);
+
+        ad.setUsername(username);
+        ad.setPassword(hash);
+
+        return repository.save(ad);
     }
 
     public Admin update(long id, String username, String password) {
@@ -47,7 +50,18 @@ public class AdminServiceImplementation implements AdminService{
     }
 
     // return type is PLACEHOLDER, implementation pending
-    public void authenticate(String username, String password) {
+    public Admin authenticate(String username, String password) {
+		var admin = repository.findByUsername(username);
+
+		if (admin == null)
+			return null;
+
+		var passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+
+		if (!passwordEncoder.matches(password, admin.getPassword()))
+			return null;
+
+		return admin;
     }
 
 }
