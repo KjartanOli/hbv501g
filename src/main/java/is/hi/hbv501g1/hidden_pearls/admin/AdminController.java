@@ -83,6 +83,21 @@ public class AdminController {
     }
 
 	// post methods related to location management
+	@PostMapping("/admin/login")
+	public String login(@ModelAttribute Admin admin, Model model, HttpSession session){
+		var auth = adminService.authenticate(admin.getUsername(), admin.getPassword());
+
+		if (auth == null)
+			{
+				// TODO add error message
+				System.err.println("Invalid username or password");
+				return "redirect:/admin/login";
+			}
+
+		session.setAttribute("admin", auth);
+
+		return "redirect:/admin";
+	}
 
 	@PostMapping("/admin/locations/new")
 	public String newLocation(@ModelAttribute Location location, Model model, HttpSession session){
