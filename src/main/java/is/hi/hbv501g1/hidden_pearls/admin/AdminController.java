@@ -30,6 +30,11 @@ public class AdminController {
     public String newLocation(HttpSession session, Model model){
 		// Check for login
 
+		if(session.getAttribute("user") == null)
+		{
+			return "redirect:/admin/login";
+		}
+
 		model.addAttribute("location", new Location());
         return "location-crud";
     }
@@ -37,6 +42,11 @@ public class AdminController {
     @GetMapping("/admin/locations/edit/{id}")
     public String editLocation(@PathVariable String id ,HttpSession session, Model model){
         // Check for login
+
+		if(session.getAttribute("user") == null)
+		{
+			return "redirect:/admin/login";
+		}
 
 		var location = locationService.getLocation(Long.parseLong(id));
 		model.addAttribute("location", location);
@@ -77,6 +87,11 @@ public class AdminController {
     public String deleteLocation(@PathVariable String id, HttpSession session, Model model){
 		// Check for login
 
+		if(session.getAttribute("user") == null)
+		{
+			return "redirect:/admin/login";
+		}
+
 		try {
 			locationService.delete(Long.parseLong(id));
 			return "redirect:/admin";
@@ -99,6 +114,11 @@ public class AdminController {
     public String newAdmin(HttpSession session, Model model){
 		// Check for login
 
+		if(session.getAttribute("user") == null)
+		{
+			return "redirect:/admin/login";
+		}
+
 		model.addAttribute("admin", new Admin());
         return "admin-crud";
     }
@@ -106,6 +126,11 @@ public class AdminController {
 	@GetMapping("/admin/admins/edit/{id}")
     public String editAdmin(@PathVariable String id ,HttpSession session, Model model){
        // Check for login
+
+	   if(session.getAttribute("user") == null)
+		{
+			return "redirect:/admin/login";
+		}
 
 		var admin = adminService.getAdmin(Long.parseLong(id));
 		model.addAttribute("admin", admin);
@@ -116,6 +141,11 @@ public class AdminController {
 	public String adminPage(HttpSession session, Model model){
 		// Check for login
 
+		if(session.getAttribute("user") == null)
+		{
+			return "redirect:/admin/login";
+		}
+
         return "admin";
     }
 
@@ -123,14 +153,24 @@ public class AdminController {
     public String getAdmins(HttpSession session, Model model){
         // Check for login
 
+		if(session.getAttribute("user") == null)
+		{
+			return "redirect:/admin/login";
+		}
+
 		List<Admin> admins = adminService.getAllAdmins();
 		model.addAttribute("admins", admins);
 		return "admin-list";
     }
 
 	@GetMapping("/admin/admins/search")
-    public String searchAdmins(@RequestParam("query") String query, Model model) {
+    public String searchAdmins(@RequestParam("query") String query, Model model, HttpSession session) {
         // Check for login
+
+		if(session.getAttribute("user") == null)
+		{
+			return "redirect:/admin/login";
+		}
 
 		List<Admin> admins = adminService.searchByName(query);
         model.addAttribute("admins", admins);
