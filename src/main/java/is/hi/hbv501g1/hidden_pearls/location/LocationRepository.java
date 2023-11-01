@@ -12,8 +12,6 @@ public interface LocationRepository extends CrudRepository<Location, Long> {
 
 	public List<Location> findByNameLike(String name);
 
-	// public List<Location> findByTag(String tag);
-
 	public List<Location> findByCategory(LocationCategory category);
 
 }

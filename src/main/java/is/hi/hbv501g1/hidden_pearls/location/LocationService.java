@@ -11,8 +11,6 @@ public interface LocationService {
 
     public List<Location> searchByName(String name);
 
-    // public List<Location> searchByTag(String tag);
-
     public List<Location> searchByCategory(LocationCategory category);
 
     public Location create(String name, String location, String description, LocationCategory category, List<String> tags, List<VisitStatistics> visits, List<Image> images);

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class LocationServiceImplementation implements LocationService{
-	
+
 	@Autowired
     private LocationRepository repository;
 
@@ -24,12 +24,6 @@ public class LocationServiceImplementation implements LocationService{
         return repository.findByNameLike(name);
     }
 
-    /*
-	   public List<Location> searchByTag(String tag) {
-	   return repository.findByTag(tag);
-	   }
-    */
-	
     public List<Location> searchByCategory(LocationCategory category) {
 		return repository.findByCategory(category);
     }
@@ -40,7 +34,6 @@ public class LocationServiceImplementation implements LocationService{
 		loc.setLocation(location);
 		loc.setDescription(description);
 		loc.setCategory(category);
-		loc.setTags(tags);
 		loc.setMonthlyVisits(visits);
 
 		return repository.save(loc);
@@ -48,14 +41,13 @@ public class LocationServiceImplementation implements LocationService{
 
     public Location update(long id, String name, String location, String description, LocationCategory category, List<String> tags, List<VisitStatistics> visits, List<Image> images) {
 		var loc = getLocation(id);
-		
+
 		// spurning með if-klásur til að geta uppfært
         // bara valda hluti
 		loc.setName(name);
 		loc.setLocation(location);
 		loc.setDescription(description);
 		loc.setCategory(category);
-		loc.setTags(tags);
 		loc.setMonthlyVisits(visits);
 
 		return repository.save(loc);
