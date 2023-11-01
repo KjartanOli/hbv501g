@@ -3,10 +3,10 @@
 
 ## Members
 
-- Kjartan Óli Ágústsson -> [koa20@hi.is]
-- María Orradóttir -> [mao44@hi.is]
-- Svana Kristín Elísdóttir -> [ske12@hi.is]
-- Sverrir Sigfússon -> [svs37@hi.is]
+- Kjartan Óli Ágústsson -> koa20@hi.is
+- María Orradóttir -> mao44@hi.is
+- Svana Kristín Elísdóttir -> ske12@hi.is
+- Sverrir Sigfússon -> svs37@hi.is
 
 ## Execution
 
