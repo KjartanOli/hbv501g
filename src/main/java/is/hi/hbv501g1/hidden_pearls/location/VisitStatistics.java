@@ -4,6 +4,8 @@ import java.time.YearMonth;
 
 import jakarta.persistence.Embeddable;
 
+// class is unused in current version of the project, looking ahead to mobile version
+
 @Embeddable
 public class VisitStatistics {
 	// Apperently month is a reserved keyword, so we use month_.

@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfi
 
 // We only want spring-security for the PasswordEncoder classes all of
 // its default configuration needs to kindly go away.
-@SpringBootApplication(exclude = {SecurityAutoConfiguration.class })
+@SpringBootApplication(exclude = { SecurityAutoConfiguration.class })
 public class HiddenPearlsApplication {
 
 	public static void main(String[] args) {

@@ -7,6 +7,7 @@
 
 <body>
 	<form action="/admin/login" method="post" th:object="${admin}">
+		<p th:if="${error}" th:text="${error}" style="color: red;"></p>
 		<label for="username">Username:</label><br>
 		<input type="text" id="username" name="username"><br>
 		<label for="password">Password:</label><br>

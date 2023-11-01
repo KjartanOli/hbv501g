@@ -11,7 +11,7 @@ import jakarta.persistence.ElementCollection;
 @Entity
 public class Location {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	private String name;
 	private String loc;
@@ -39,9 +39,9 @@ public class Location {
 	}
 
 	/*
-	The Loc getter and setter appear necessary for Spring to handle
-    form submission correctly.  The Location getter and setter are
-    significantly more readable and should be preferred in our code.
+	 * The Loc getter and setter appear necessary for Spring to handle
+	 * form submission correctly. The Location getter and setter are
+	 * significantly more readable and should be preferred in our code.
 	 */
 	public String getLoc() {
 		return this.loc;

@@ -3,9 +3,8 @@ package is.hi.hbv501g1.hidden_pearls.admin;
 import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.jpa.repository.Query;
 
-public interface AdminRepository extends CrudRepository<Admin, Long>{
+public interface AdminRepository extends CrudRepository<Admin, Long> {
 
 	public List<Admin> findAll();
 

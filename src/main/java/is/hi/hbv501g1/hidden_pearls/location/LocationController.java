@@ -14,40 +14,40 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class LocationController {
 
 	@Autowired
-    private LocationService locationService;
+	private LocationService locationService;
 
 	@GetMapping("/")
-    public String getHome(Model model){
+	public String getHome(Model model) {
 		var pearls = locationService.searchByCategory(LocationCategory.PEARL);
 		var traps = locationService.searchByCategory(LocationCategory.TRAP);
 
 		model.addAttribute("pearls", pearls.subList(0, Math.min(5, pearls.size())));
 		model.addAttribute("traps", traps.subList(0, Math.min(5, traps.size())));
-        return "index";
-    }
+		return "index";
+	}
 
 	@GetMapping("/location-list")
-	public String getLocations(Model model){
-        var locations = locationService.getAllLocations();
+	public String getLocations(Model model) {
+		var locations = locationService.getAllLocations();
 		model.addAttribute("locations", locations);
 		if (locations == null)
 			return "redirect:/error";
-        return "location-list";
-    }
+		return "location-list";
+	}
 
-    @GetMapping("/location/{id}")
-    public String getLocation(@PathVariable String id, Model model){
+	@GetMapping("/location/{id}")
+	public String getLocation(@PathVariable String id, Model model) {
 		var location = locationService.getLocation(Long.parseLong(id));
 		model.addAttribute("location", location);
 		if (location == null)
 			return "redirect:/error";
-        return "location";
-    }
+		return "location";
+	}
 
 	@GetMapping("/search")
-    public String searchLocation(@RequestParam("query") String query, Model model) {
-        List<Location> locations = locationService.searchByName(query);
-        model.addAttribute("locations", locations);
-        return "location-list";
-    }
+	public String searchLocation(@RequestParam("query") String query, Model model) {
+		List<Location> locations = locationService.searchByName(query);
+		model.addAttribute("locations", locations);
+		return "location-list";
+	}
 }

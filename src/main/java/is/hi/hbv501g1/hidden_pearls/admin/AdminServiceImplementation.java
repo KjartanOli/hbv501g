@@ -7,56 +7,59 @@ import org.springframework.stereotype.Service;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 
 @Service
-public class AdminServiceImplementation implements AdminService{
+public class AdminServiceImplementation implements AdminService {
 
-    @Autowired
-    private AdminRepository repository;
+	@Autowired
+	private AdminRepository repository;
 
-    public List<Admin> getAllAdmins() {
-        return repository.findAll();
-    }
+	public List<Admin> getAllAdmins() {
+		return repository.findAll();
+	}
 
-    public Admin getAdmin(long id) {
-        return repository.findById(id);
-    }
+	public Admin getAdmin(long id) {
+		return repository.findById(id);
+	}
 
 	public Admin create(String username, String password) {
 		Admin existingAdmin = repository.findByUsername(username);
 		if (existingAdmin != null) {
 			throw new IllegalArgumentException("Username already exists");
-    	}
+		}
+
+		var ad = new Admin();
 
 		var passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-        var ad = new Admin();
-
 		var hash = passwordEncoder.encode(password);
 
-        ad.setUsername(username);
-        ad.setPassword(hash);
+		ad.setUsername(username);
+		ad.setPassword(hash);
 
-        return repository.save(ad);
-    }
+		return repository.save(ad);
+	}
 
-    public Admin update(long id, String username, String password) {
-        var ad = getAdmin(id);
+	public Admin update(long id, String username, String password) {
+		var ad = getAdmin(id);
 
-        ad.setPassword(password);
+		var passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+		var hash = passwordEncoder.encode(password);
 
-        return repository.save(ad);
-    }
+		ad.setPassword(hash);
 
-    public void delete(long id) {
-        var ad = repository.findById(id);
-        if (ad != null)
-            repository.delete(ad);
-    }
+		return repository.save(ad);
+	}
+
+	public void delete(long id) {
+		var ad = repository.findById(id);
+		if (ad != null)
+			repository.delete(ad);
+	}
 
 	@Override
-    public List<Admin> searchByName(String name) {
-        return repository.findByUsernameLike(name);
-    }
+	public List<Admin> searchByName(String name) {
+		return repository.findByUsernameLike(name);
+	}
 
-    public Admin authenticate(String username, String password) {
+	public Admin authenticate(String username, String password) {
 		var admin = repository.findByUsername(username);
 
 		if (admin == null)
@@ -68,6 +71,6 @@ public class AdminServiceImplementation implements AdminService{
 			return null;
 
 		return admin;
-    }
+	}
 
 }
