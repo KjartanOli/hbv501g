@@ -157,7 +157,7 @@ public class AdminController {
 		List<Admin> admins = adminService.searchByName(query);
 		model.addAttribute("admins", admins);
 
-		return "amdin-list";
+		return "admin-list";
 	}
 
 	// post methods
