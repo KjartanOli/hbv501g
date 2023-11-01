@@ -3,10 +3,10 @@
 
 ## Members
 
-- Kjartan Óli Ágústsson
-- María Orradóttir
-- Svana Kristín Elísdóttir
-- Sverrir Sigfússon
+- Kjartan Óli Ágústsson -> [koa20@hi.is]
+- María Orradóttir -> [mao44@hi.is]
+- Svana Kristín Elísdóttir -> [ske12@hi.is]
+- Sverrir Sigfússon -> [svs37@hi.is]
 
 ## Execution
 
@@ -19,7 +19,6 @@ To run the project, you need to execute `mvn spring-boot:run` in the project's r
 | `/`                             | Homepage with search bar and two categories of locations         | No         |
 | `/location-list`                | Get a list over all the locations on Hidden Pearls               | No         |
 | `/location/{id}`                | Read the description about the location you chose                | No         |
-| `/search?query=`                | A search bar ..                                                  | No         |
 | `/admin`                        | Admin log in page                                                | No         |
 | `/admin/locations/new`          | Admin can add a new location by filling out a form               | Yes        |
 | `/admin/locations/edit/{id}`    | Admin can edit a location that already exists, filled out form   | Yes        |
