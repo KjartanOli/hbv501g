@@ -21,7 +21,7 @@
 				th:value="${cat}" th:text="${cat}"></option>
 		</select><br>
 		<input type="submit" value="Save">
-		<button type="button" onclick="location.href='/admin'">Cancel</button>
+		<button type="button" onclick="window.location.href='/admin/locations'">Cancel</button>
 	</form>
 
 	<h1 th:unless="${location.name == null or location.name.isEmpty()}">Edit Location</h1>
@@ -40,11 +40,11 @@
 				th:value="${cat}" th:text="${cat}"></option>
 		</select><br>
 		<input type="submit" value="Save">
-		<button type="button" onclick="location.href='/admin'">Cancel</button>
+		<button type="button" onclick="window.location.href='/admin/locations'">Cancel</button>
 	</form>
 
 	<form th:unless="${location.name == null or location.name.isEmpty()}"
-		th:action="@{/admin/locations/delete/{id}(id=${location.id})}" th:object="${location}" method="post">
+		th:action="@{/admin/locations/delete/edit/{id}(id=${location.id})}" th:object="${location}" method="post">
 		<input type="hidden" th:field="*{id}">
 		<input type="submit" value="Delete">
 	</form>

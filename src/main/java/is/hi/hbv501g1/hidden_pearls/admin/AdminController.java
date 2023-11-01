@@ -26,6 +26,20 @@ public class AdminController {
 	// location management
 
 	// get methods
+	@GetMapping("/admin/locations")
+	public String getAdminLocations(HttpSession session, Model model) {
+		// Check for login
+		if (session.getAttribute("admin") == null) {
+			return "redirect:/admin/login";
+		}
+
+		var locations = locationService.getAllLocations();
+		model.addAttribute("locations", locations);
+		if (locations == null)
+			return "redirect:/error";
+		return "location-list-admin";
+	}
+
 	@GetMapping("/admin/locations/new")
 	public String newLocation(HttpSession session, Model model) {
 		// Check for login
@@ -75,7 +89,7 @@ public class AdminController {
 		return "redirect:/admin";
 	}
 
-	@PostMapping("/admin/locations/delete/{id}")
+	@PostMapping("/admin/locations/edit/delete/{id}")
 	public String deleteLocation(@PathVariable String id, HttpSession session, Model model) {
 		// Check for login
 		if (session.getAttribute("admin") == null) {
@@ -84,10 +98,21 @@ public class AdminController {
 
 		try {
 			locationService.delete(Long.parseLong(id));
-			return "redirect:/admin";
+			return "redirect:/admin/locations";
 		} catch (Exception e) {
 			return "redirect:/error";
 		}
+	}
+
+	@PostMapping("/admin/locations/delete/{id}")
+	public String deleteLocationFromList(@PathVariable Long id, HttpSession session) {
+		// Check for login
+		if (session.getAttribute("admin") == null) {
+			return "redirect:/admin/login";
+		}
+
+		locationService.delete(id);
+		return "redirect:/admin/locations";
 	}
 
 	// admin management
@@ -160,6 +185,13 @@ public class AdminController {
 		return "admin-list";
 	}
 
+	@GetMapping("/admin/logout")
+	public String logout(HttpSession session) {
+		session.removeAttribute("admin");
+		return "redirect:/";
+	}
+
+
 	// post methods
 	@PostMapping("/admin/login")
 	public String login(@ModelAttribute Admin admin, Model model, HttpSession session) {
@@ -175,6 +207,7 @@ public class AdminController {
 		return "redirect:/admin";
 	}
 
+
 	@PostMapping("/admin/admins/new")
 	public String newAdmin(@ModelAttribute Admin admin, Model model, HttpSession session) {
 		// check if username is already taken, return to admin-crud with error msg
@@ -187,26 +220,47 @@ public class AdminController {
 			return "admin-crud";
 		}
 
-		return "redirect:/admin";
+		return "redirect:/admin/admins";
 	}
 
 	@PostMapping("/admin/admins/edit/{id}")
 	public String editAdmin(@ModelAttribute Admin admin, Model model, HttpSession session) {
+		// Check for login
+		if (session.getAttribute("admin") == null) {
+			return "redirect:/admin/login";
+		}
+
 		adminService.update(
 				admin.getId(),
 				admin.getUsername(),
 				admin.getPassword());
 
-		return "redirect:/admin";
+		return "redirect:/admin/admins";
 	}
 
 	@PostMapping("/admin/admins/edit/delete/{id}")
 	public String deleteAdmin(HttpSession session, Model model) {
+		// Check for login
+		if (session.getAttribute("admin") == null) {
+			return "redirect:/admin/login";
+		}
+
 		Admin adminToDelete = (Admin) model.getAttribute("admin");
 		if (adminToDelete != null) {
 			adminService.delete(adminToDelete.getId());
-			return "redirect:/admin";
+			return "redirect:/admin/admins";
 		} else
 			return "index";
+	}
+
+	@PostMapping("/admin/admins/delete/{id}")
+	public String deleteAdminFromList(@PathVariable Long id, HttpSession session) {
+		// Check for login
+		if (session.getAttribute("admin") == null) {
+			return "redirect:/admin/login";
+		}
+
+		adminService.delete(id);
+		return "redirect:/admin/admins";
 	}
 }

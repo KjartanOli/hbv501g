@@ -6,7 +6,7 @@
 </head>
 
 <body>
-	<button onclick="location.href='/logout'" type="button">Logout</button>
+	<button onclick="location.href='/admin/logout'" type="button">Logout</button>
 	<a href="/admin/admins/new">Create New Admin</a>
 	<table>
 		<tr>
@@ -15,8 +15,9 @@
 		</tr>
 		<tr th:each="admin : ${admins}">
 			<td><a th:href="@{/admin/admins/edit/{id}(id=${admin.id})}" th:text="${admin.username}">Admin Name</a></td>
-			<td><button onclick="location.href='@{{admin/admins/delete/{id}}(admin=${admin.id})}'"
-					type="button">Delete</button></td>
+			<td><form th:action="@{/admin/admins/delete/{id}(id=${admin.id})}" method="post">
+				<button type="submit">Delete</button>
+			</form></td>
 		</tr>
 	</table>
 	<a href="/admin">Back to Admin Page</a>

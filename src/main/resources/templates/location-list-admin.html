@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Location List</title>
+</head>
+
+<body>
+	<a href="/admin/locations/new">Create New Location</a>
+	<table>
+		<tr>
+			<th>Name</th>
+			<th>Actions</th>
+		</tr>
+		<tr th:each="location : ${locations}">
+			<td><a th:href="@{/admin/locations/edit/{id}(id=${location.id})}" th:text="${location.name}">Location Name</a></td>
+			<td><form th:action="@{/admin/locations/delete/{id}(id=${location.id})}" method="post">
+				<button type="submit" class="btn btn-danger">Delete</button>
+			</form></td>
+		</tr>
+	</table>
+	<a href="/admin">Back to Admin Page</a>
+</body>
+
+</html>
