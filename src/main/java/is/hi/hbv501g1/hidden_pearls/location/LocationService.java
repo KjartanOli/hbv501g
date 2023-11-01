@@ -13,9 +13,9 @@ public interface LocationService {
 
     public List<Location> searchByCategory(LocationCategory category);
 
-    public Location create(String name, String location, String description, LocationCategory category, List<String> tags, List<VisitStatistics> visits, List<Image> images);
+    public Location create(String name, String location, String description, LocationCategory category, List<VisitStatistics> visits);
 
-    public Location update(long id, String name, String location, String description, LocationCategory category, List<String> tags, List<VisitStatistics> visits, List<Image> images);
+    public Location update(long id, String name, String location, String description, LocationCategory category, List<VisitStatistics> visits);
 
     public void delete(long id);
 

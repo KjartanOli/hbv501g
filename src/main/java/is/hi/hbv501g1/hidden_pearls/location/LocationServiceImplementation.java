@@ -28,7 +28,7 @@ public class LocationServiceImplementation implements LocationService{
 		return repository.findByCategory(category);
     }
 
-    public Location create(String name, String location, String description, LocationCategory category, List<String> tags, List<VisitStatistics> visits, List<Image> images) {
+    public Location create(String name, String location, String description, LocationCategory category, List<VisitStatistics> visits) {
 		var loc = new Location();
 		loc.setName(name);
 		loc.setLocation(location);
@@ -39,7 +39,7 @@ public class LocationServiceImplementation implements LocationService{
 		return repository.save(loc);
     }
 
-    public Location update(long id, String name, String location, String description, LocationCategory category, List<String> tags, List<VisitStatistics> visits, List<Image> images) {
+    public Location update(long id, String name, String location, String description, LocationCategory category, List<VisitStatistics> visits) {
 		var loc = getLocation(id);
 
 		// spurning með if-klásur til að geta uppfært

@@ -61,8 +61,6 @@ public class AdminController {
 			location.getLocation(),
 			location.getDescription(),
 			location.getCategory(),
-			null,
-			null,
 			null);
 
 		return "redirect:/admin";
@@ -76,8 +74,6 @@ public class AdminController {
 			location.getLocation(),
 			location.getDescription(),
 			location.getCategory(),
-			null,
-			null,
 			null);
 
 		return "redirect:/admin";

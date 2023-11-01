@@ -20,8 +20,6 @@
 			<option th:each="cat : ${T(is.hi.hbv501g1.hidden_pearls.location.LocationCategory).values()}"
 				th:value="${cat}" th:text="${cat}"></option>
 		</select><br>
-		<label for="tags">Tags:</label><br>
-		<input type="text" id="tags" name="tags"><br>
 		<input type="submit" value="Save">
 		<button type="button" onclick="location.href='/admin'">Cancel</button>
 	</form>
@@ -41,8 +39,6 @@
 			<option th:each="cat : ${T(is.hi.hbv501g1.hidden_pearls.location.LocationCategory).values()}"
 				th:value="${cat}" th:text="${cat}"></option>
 		</select><br>
-		<label for="tags">Tags:</label><br>
-		<input type="text" id="tags" name="tags"><br>
 		<input type="submit" value="Save">
 		<button type="button" onclick="location.href='/admin'">Cancel</button>
 	</form>
