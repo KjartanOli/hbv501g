@@ -29,7 +29,7 @@ public class AdminController {
 	@GetMapping("/admin/locations/new")
 	public String newLocation(HttpSession session, Model model) {
 		// Check for login
-		if (session.getAttribute("user") == null) {
+		if (session.getAttribute("admin") == null) {
 			return "redirect:/admin/login";
 		}
 
@@ -40,7 +40,7 @@ public class AdminController {
 	@GetMapping("/admin/locations/edit/{id}")
 	public String editLocation(@PathVariable String id, HttpSession session, Model model) {
 		// Check for login
-		if (session.getAttribute("user") == null) {
+		if (session.getAttribute("admin") == null) {
 			return "redirect:/admin/login";
 		}
 
@@ -78,7 +78,7 @@ public class AdminController {
 	@PostMapping("/admin/locations/delete/{id}")
 	public String deleteLocation(@PathVariable String id, HttpSession session, Model model) {
 		// Check for login
-		if (session.getAttribute("user") == null) {
+		if (session.getAttribute("admin") == null) {
 			return "redirect:/admin/login";
 		}
 
@@ -102,7 +102,7 @@ public class AdminController {
 	@GetMapping("/admin/admins/new")
 	public String newAdmin(HttpSession session, Model model) {
 		// Check for login
-		if (session.getAttribute("user") == null) {
+		if (session.getAttribute("admin") == null) {
 			return "redirect:/admin/login";
 		}
 
@@ -114,7 +114,7 @@ public class AdminController {
 	@GetMapping("/admin/admins/edit/{id}")
 	public String editAdmin(@PathVariable String id, HttpSession session, Model model) {
 		// Check for login
-		if (session.getAttribute("user") == null) {
+		if (session.getAttribute("admin") == null) {
 			return "redirect:/admin/login";
 		}
 
@@ -127,7 +127,7 @@ public class AdminController {
 	@GetMapping("/admin")
 	public String adminPage(HttpSession session, Model model) {
 		// Check for login
-		if (session.getAttribute("user") == null) {
+		if (session.getAttribute("admin") == null) {
 			return "redirect:/admin/login";
 		}
 
@@ -137,7 +137,7 @@ public class AdminController {
 	@GetMapping("/admin/admins")
 	public String getAdmins(HttpSession session, Model model) {
 		// Check for login
-		if (session.getAttribute("user") == null) {
+		if (session.getAttribute("admin") == null) {
 			return "redirect:/admin/login";
 		}
 
@@ -150,7 +150,7 @@ public class AdminController {
 	@GetMapping("/admin/admins/search")
 	public String searchAdmins(@RequestParam("query") String query, Model model, HttpSession session) {
 		// Check for login
-		if (session.getAttribute("user") == null) {
+		if (session.getAttribute("admin") == null) {
 			return "redirect:/admin/login";
 		}
 
