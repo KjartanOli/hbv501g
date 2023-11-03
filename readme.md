@@ -12,6 +12,8 @@
 
 To run the project, you need to execute `mvn spring-boot:run` in the project's root directory. The project will be accessible at `localhost:8080` once it has been launched.
 
+For datebase access, please request it from one of our team members.
+
 ## Links
 
 | Link                            | Description                                                      | Needs login|
