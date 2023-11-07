@@ -26,7 +26,7 @@ public class LocationController {
 		return "index";
 	}
 
-	@GetMapping("/location-list")
+	@GetMapping("/locations")
 	public String getLocations(Model model) {
 		var locations = locationService.getAllLocations();
 		model.addAttribute("locations", locations);
