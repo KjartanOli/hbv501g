@@ -19,9 +19,11 @@ For datebase access, please request it from one of our team members.
 | Link                            | Description                                                      | Needs login|
 | :------------------------------ | :--------------------------------------------------------------- | :--------- |
 | `/`                             | Homepage with search bar and two categories of locations         | No         |
-| `/location-list`                | Get a list of all the locations on Hidden Pearls                 | No         |
+| `/locations`                    | A list of all the locations on Hidden Pearls                     | No         |
 | `/location/{id}`                | Read the description about the location you choose               | No         |
-| `/admin`                        | Admin log in page                                                | No         |
+| `/admin/login`                  | Admin log-in page                                                | No         |
+| `/admin`                        | Admin landing page                                               | Yes        |
+| `/admin/locations`              | Admin view of all locations												               | Yes        |
 | `/admin/locations/new`          | Admin can add a new location by filling out a form               | Yes        |
 | `/admin/locations/edit/{id}`    | Admin can edit a location that already exists                    | Yes        |
 | `/admin/admins`                 | Admin gets a list over existing admins                           | Yes        |
