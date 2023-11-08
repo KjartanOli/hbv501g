@@ -73,7 +73,7 @@ public class AdminController {
 				location.getCategory(),
 				null);
 
-		return "redirect:/admin/locationss";
+		return "redirect:/admin/locations";
 	}
 
 	@PostMapping("/admin/locations/edit/{id}")
