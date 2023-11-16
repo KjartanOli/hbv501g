@@ -11,15 +11,19 @@
 		th:object="${location}" method="post">
 		<label for="name">Name:</label><br>
 		<input type="text" id="name" th:field="*{name}"><br>
+		<br>
 		<label for="location">Location:</label><br>
 		<input type="text" id="location" th:field="*{loc}"><br>
+		<br>
 		<label for="description">Description:</label><br>
 		<textarea id="description" th:field="*{description}"></textarea><br>
+		<br>
 		<label for="category">Category:</label><br>
 		<select id="category" th:field="*{category}">
 			<option th:each="cat : ${T(is.hi.hbv501g1.hidden_pearls.location.LocationCategory).values()}"
 				th:value="${cat}" th:text="${cat}"></option>
 		</select><br>
+		<br>
 		<input type="submit" value="Save">
 		<button type="button" onclick="window.location.href='/admin/locations'">Cancel</button>
 	</form>
@@ -30,19 +34,23 @@
 		<input type="hidden" th:field="*{id}">
 		<label for="name">Name:</label><br>
 		<input type="text" id="name" th:field="*{name}"><br>
+		<br>
 		<label for="location">Location:</label><br>
 		<input type="text" id="location" th:field="*{loc}"><br>
+		<br>
 		<label for="description">Description:</label><br>
 		<textarea id="description" th:field="*{description}"></textarea><br>
+		<br>
 		<label for="category">Category:</label><br>
 		<select id="category" th:field="*{category}">
 			<option th:each="cat : ${T(is.hi.hbv501g1.hidden_pearls.location.LocationCategory).values()}"
 				th:value="${cat}" th:text="${cat}"></option>
 		</select><br>
+		<br>
 		<input type="submit" value="Save">
 		<button type="button" onclick="window.location.href='/admin/locations'">Cancel</button>
 	</form>
-
+	<br>
 	<form th:unless="${location.name == null or location.name.isEmpty()}"
 		th:action="@{/admin/locations/edit/delete/{id}(id=${location.id})}" th:object="${location}" method="post">
 		<input type="hidden" th:field="*{id}">

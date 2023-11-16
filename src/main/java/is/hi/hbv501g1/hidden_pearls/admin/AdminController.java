@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import is.hi.hbv501g1.hidden_pearls.location.Location;
@@ -119,7 +120,12 @@ public class AdminController {
 
 	// get methods
 	@GetMapping("/admin/login")
-	public String getLogin(HttpSession session, Model model) {
+	public String getLogin(HttpSession session, Model model, RedirectAttributes redirectAttributes) {
+		if (session.getAttribute("admin") != null) {
+			redirectAttributes.addFlashAttribute("error", "Admin is already logged in");
+			return "redirect:/admin";
+		}
+
 		model.addAttribute("admin", new Admin());
 		return "admin-login";
 	}
@@ -194,11 +200,12 @@ public class AdminController {
 
 	// post methods
 	@PostMapping("/admin/login")
-	public String login(@ModelAttribute Admin admin, Model model, HttpSession session) {
+	public String login(@ModelAttribute Admin admin, RedirectAttributes redirectAttributes, HttpSession session) {
+
 		var auth = adminService.authenticate(admin.getUsername(), admin.getPassword());
 
 		if (auth == null) {
-			model.addAttribute("error", "Invalid username or password");
+			redirectAttributes.addFlashAttribute("error", "Invalid username or password");
 			return "redirect:/admin/login";
 		}
 
@@ -207,17 +214,16 @@ public class AdminController {
 		return "redirect:/admin";
 	}
 
-
 	@PostMapping("/admin/admins/new")
-	public String newAdmin(@ModelAttribute Admin admin, Model model, HttpSession session) {
+	public String newAdmin(@ModelAttribute Admin admin, RedirectAttributes redirectAttributes, Model model, HttpSession session) {
 		// check if username is already taken, return to admin-crud with error msg
 		try {
 			adminService.create(
 					admin.getUsername(),
 					admin.getPassword());
 		} catch (IllegalArgumentException e) {
-			model.addAttribute("error", "Admin username taken");
-			return "admin-crud";
+			redirectAttributes.addFlashAttribute("error", "Admin username taken");
+			return "redirect:/admin/admins/new";
 		}
 
 		return "redirect:/admin/admins";

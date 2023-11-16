@@ -14,6 +14,7 @@
 		<input type="text" id="username" th:field="*{username}"><br>
 		<label for="password">Password:</label><br>
 		<input type="password" id="password" th:field="*{password}"><br>
+		<br>
 		<input type="submit" value="Submit">
 		<button type="button" onclick="location.href='/admin/admins'">Cancel</button>
 	</form>
@@ -26,6 +27,7 @@
 		<input type="text" id="username" th:field="*{username}" disabled="true"><br>
 		<label for="password">Password:</label><br>
 		<input type="password" id="password" th:field="*{password}"><br>
+		<br>
 		<input type="submit" value="Submit">
 		<button type="button" onclick="location.href='/admin/admins'">Cancel</button>
 		<button type="button" th:if="${admin.id != null}"

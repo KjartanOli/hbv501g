@@ -8,6 +8,7 @@
 <body>
 	<h1>Welcome, Admin!</h1>
 	<button onclick="location.href='/admin/logout'" type="button">Logout</button>
+	<p th:if="${error}" th:text="${error}" style="color: red;"></p>
 	<ul>
 		<li><a href="/admin/locations">Locations List</a></li>
 		<li><a href="/admin/admins">Admins List</a></li>
