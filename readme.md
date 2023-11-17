@@ -14,6 +14,8 @@ To run the project, you need to execute `mvn spring-boot:run` in the project's r
 
 For datebase access, please request it from one of our team members.
 
+Project is also live here: https://hidden-pearls.onrender.com/
+
 ## Links
 
 | Link                            | Description                                                      | Needs login|
