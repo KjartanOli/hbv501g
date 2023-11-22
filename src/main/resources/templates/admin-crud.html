@@ -30,9 +30,11 @@
 		<br>
 		<input type="submit" value="Submit">
 		<button type="button" onclick="location.href='/admin/admins'">Cancel</button>
-		<button type="button" th:if="${admin.id != null}"
-			onclick="location.href='/admin/delete/' + document.getElementById('id').value">Delete</button>
 	</form>
+	<form th:action="@{/admin/admins/delete/{id}(id=${admin.id})}" method="post">
+		<button type="submit">Delete</button>
+	</form>
+
 </body>
 
 </html>

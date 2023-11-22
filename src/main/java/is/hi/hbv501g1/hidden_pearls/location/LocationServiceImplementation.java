@@ -3,6 +3,7 @@ package is.hi.hbv501g1.hidden_pearls.location;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -12,7 +13,9 @@ public class LocationServiceImplementation implements LocationService {
 	private LocationRepository repository;
 
 	public List<Location> getAllLocations() {
-		return repository.findAll();
+		Sort sort = Sort.by("name");
+
+		return repository.findAll(sort);
 	}
 
 	public Location getLocation(long id) {

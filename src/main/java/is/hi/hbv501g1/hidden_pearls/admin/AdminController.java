@@ -244,21 +244,6 @@ public class AdminController {
 		return "redirect:/admin/admins";
 	}
 
-	@PostMapping("/admin/admins/edit/delete/{id}")
-	public String deleteAdmin(HttpSession session, Model model) {
-		// Check for login
-		if (session.getAttribute("admin") == null) {
-			return "redirect:/admin/login";
-		}
-
-		Admin adminToDelete = (Admin) model.getAttribute("admin");
-		if (adminToDelete != null) {
-			adminService.delete(adminToDelete.getId());
-			return "redirect:/admin/admins";
-		} else
-			return "index";
-	}
-
 	@PostMapping("/admin/admins/delete/{id}")
 	public String deleteAdminFromList(@PathVariable Long id, HttpSession session) {
 		// Check for login
@@ -267,6 +252,12 @@ public class AdminController {
 		}
 
 		adminService.delete(id);
+
+		// if admin deletes themselves, log them out
+		if (((Admin) session.getAttribute("admin")).getId() == id) {
+			return "redirect:/admin/logout";
+		}
+
 		return "redirect:/admin/admins";
 	}
 }

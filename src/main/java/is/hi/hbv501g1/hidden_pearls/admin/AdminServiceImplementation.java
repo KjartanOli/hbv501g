@@ -3,6 +3,7 @@ package is.hi.hbv501g1.hidden_pearls.admin;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 
@@ -13,7 +14,9 @@ public class AdminServiceImplementation implements AdminService {
 	private AdminRepository repository;
 
 	public List<Admin> getAllAdmins() {
-		return repository.findAll();
+		Sort sort = Sort.by("username");
+
+		return repository.findAll(sort);
 	}
 
 	public Admin getAdmin(long id) {
