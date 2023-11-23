@@ -31,7 +31,7 @@
 		<input type="submit" value="Submit">
 		<button type="button" onclick="location.href='/admin/admins'">Cancel</button>
 	</form>
-	<form th:action="@{/admin/admins/delete/{id}(id=${admin.id})}" method="post">
+	<form th:unless="${admin.username == null or admin.username.isEmpty()}" th:action="@{/admin/admins/delete/{id}(id=${admin.id})}" method="post">
 		<button type="submit">Delete</button>
 	</form>
 
