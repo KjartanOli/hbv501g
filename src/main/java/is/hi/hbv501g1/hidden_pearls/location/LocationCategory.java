@@ -1,11 +1,11 @@
 package is.hi.hbv501g1.hidden_pearls.location;
 
 public enum LocationCategory {
-	TRAP(0),
-	PEARL(1);
+	TRAP("TRAP"),
+	PEARL("PEARL");
 
-	private final int category;
-	LocationCategory(int category) {
+	private final String category;
+	LocationCategory(String category) {
 		this.category = category;
 	}
 }

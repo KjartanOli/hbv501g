@@ -16,7 +16,7 @@ public class APIController{
 
 	@GetMapping("/api/locations")
 	public List<Location> getLocations(
-		@RequestParam(required = false) Integer category,
+		@RequestParam(required = false) String category,
 		@RequestParam(required = false) Integer limit
 	) {
 		System.err.println(category);
@@ -24,7 +24,7 @@ public class APIController{
 
 		List<Location> res;
 		if (category != null) {
-			var c = LocationCategory.values()[category];
+			var c = LocationCategory.valueOf(category);
 			res = locationService.searchByCategory(c);
 		}
 		else {
