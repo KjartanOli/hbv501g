@@ -14,7 +14,7 @@ public class Location {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	private String name;
-	private String loc;
+	private GPSLocation loc;
 	private String description;
 	private LocationCategory category;
 
@@ -43,20 +43,12 @@ public class Location {
 	 * form submission correctly. The Location getter and setter are
 	 * significantly more readable and should be preferred in our code.
 	 */
-	public String getLoc() {
+	public GPSLocation getLoc() {
 		return this.loc;
 	}
 
-	public String getLocation() {
-		return this.getLoc();
-	}
-
-	public void setLoc(String location) {
+	public void setLoc(GPSLocation location) {
 		this.loc = location;
-	}
-
-	public void setLocation(String location) {
-		this.setLoc(location);
 	}
 
 	public String getDescription() {

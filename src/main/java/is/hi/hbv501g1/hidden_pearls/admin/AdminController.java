@@ -69,7 +69,7 @@ public class AdminController {
 	public String newLocation(@ModelAttribute Location location, Model model, HttpSession session) {
 		locationService.create(
 				location.getName(),
-				location.getLocation(),
+				location.getLoc(),
 				location.getDescription(),
 				location.getCategory(),
 				null);
@@ -82,7 +82,7 @@ public class AdminController {
 		locationService.update(
 				location.getId(),
 				location.getName(),
-				location.getLocation(),
+				location.getLoc(),
 				location.getDescription(),
 				location.getCategory(),
 				null);

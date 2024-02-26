@@ -15,8 +15,25 @@ public class APIController{
 	private LocationService locationService;
 
 	@GetMapping("/api/locations")
-	public List<Location> getLocations() {
-		return locationService.getAllLocations();
+	public List<Location> getLocations(
+		@RequestParam(required = false) Integer category,
+		@RequestParam(required = false) Integer limit
+	) {
+		System.err.println(category);
+		System.err.println(limit);
+
+		List<Location> res;
+		if (category != null) {
+			var c = LocationCategory.values()[category];
+			res = locationService.searchByCategory(c);
+		}
+		else {
+			res = locationService.getAllLocations();
+		}
+
+		if (limit != null)
+			return res.subList(0, Math.min(limit, res.size()));
+		return res;
 	}
 
 	@GetMapping("/api/location/{id}")
