@@ -19,7 +19,7 @@ public class Location {
 	private LocationCategory category;
 
 	@ElementCollection
-	private List<VisitStatistics> monthlyVisits;
+	private List<VisitStatistics> statistics;
 
 	public long getId() {
 		return id;
@@ -38,11 +38,6 @@ public class Location {
 
 	}
 
-	/*
-	 * The Loc getter and setter appear necessary for Spring to handle
-	 * form submission correctly. The Location getter and setter are
-	 * significantly more readable and should be preferred in our code.
-	 */
 	public GPSLocation getLoc() {
 		return this.loc;
 	}
@@ -67,11 +62,11 @@ public class Location {
 		this.category = category;
 	}
 
-	public List<VisitStatistics> getMonthlyVisits() {
-		return monthlyVisits;
+	public List<VisitStatistics> getStatistics() {
+		return statistics;
 	}
 
-	public void setMonthlyVisits(List<VisitStatistics> monthlyVisits) {
-		this.monthlyVisits = monthlyVisits;
+	public void setStatistics(List<VisitStatistics> statistics) {
+		this.statistics = statistics;
 	}
 }
