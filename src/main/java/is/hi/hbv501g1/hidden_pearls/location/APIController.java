@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -17,15 +18,18 @@ public class APIController{
 	@GetMapping("/api/locations")
 	public List<Location> getLocations(
 		@RequestParam(required = false) String category,
-		@RequestParam(required = false) Integer limit
+		@RequestParam(required = false) Integer limit,
+		@RequestParam (required = false) Integer[] ids
 	) {
-		System.err.println(category);
-		System.err.println(limit);
-
 		List<Location> res;
 		if (category != null) {
 			var c = LocationCategory.valueOf(category);
 			res = locationService.searchByCategory(c);
+		}
+		if (ids != null) {
+			res = new ArrayList<Location>();
+			for (var id : ids)
+				res.add(locationService.getLocation(id));
 		}
 		else {
 			res = locationService.getAllLocations();
