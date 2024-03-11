@@ -1,6 +1,7 @@
 package is.hi.hbv501g1.hidden_pearls.location;
 
 import java.util.List;
+import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -28,6 +29,32 @@ public class LocationServiceImplementation implements LocationService {
 
 	public List<Location> searchByCategory(LocationCategory category) {
 		return repository.findByCategory(category);
+	}
+
+	private double distance(GPSLocation p1, GPSLocation p2) {
+		final var earthRadiusKm = 6371;
+
+		var dLat = Math.toRadians(p2.getLatitude() - p1.getLatitude());
+		var dLon = Math.toRadians(p2.getLongitude() - p1.getLongitude());
+
+		var lat1 = Math.toRadians(p1.getLatitude());
+		var lat2 = Math.toRadians(p2.getLatitude());
+
+		var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+				Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2);
+		var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+		return earthRadiusKm * c;
+
+	}
+
+	public List<Location> searchByPosition(GPSLocation pos, double radius) {
+		var locations = getAllLocations();
+		List<Location> res = new ArrayList<Location>();
+		for (var location : locations) {
+			if (distance(pos, location.getLoc()) < radius)
+				res.add(location);
+		}
+		return res;
 	}
 
 	public Location create(String name, GPSLocation location, String description, LocationCategory category,

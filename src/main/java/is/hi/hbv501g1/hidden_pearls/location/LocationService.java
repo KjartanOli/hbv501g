@@ -12,6 +12,8 @@ public interface LocationService {
 
 	public List<Location> searchByCategory(LocationCategory category);
 
+	public List<Location> searchByPosition(GPSLocation pos, double radius);
+
 	public Location create(String name, GPSLocation location, String description, LocationCategory category,
 			List<VisitStatistics> visits);
 
