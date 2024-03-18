@@ -20,17 +20,28 @@ public class APIController{
 	public List<Location> getLocations(
 		@RequestParam(required = false) String category,
 		@RequestParam(required = false) Integer limit,
-		@RequestParam (required = false) Integer[] ids
+		@RequestParam (required = false) Integer[] ids,
+		@RequestParam(required = false) String name,
+		@RequestParam (required = false) String longitude,
+		@RequestParam (required = false) String latitude,
+		@RequestParam (required = false) String radius
 	) {
 		List<Location> res;
 		if (category != null) {
 			var c = LocationCategory.valueOf(category);
 			res = locationService.searchByCategory(c);
 		}
-		if (ids != null) {
+		else if (ids != null) {
 			res = new ArrayList<Location>();
 			for (var id : ids)
 				res.add(locationService.getLocation(id));
+		}
+		else if (name != null) {
+			res = locationService.searchByName(name);
+		}
+		else if (longitude != null && latitude != null && radius != null) {
+			var pos = new GPSLocation(Double.parseDouble(longitude), Double.parseDouble(latitude));
+			res = locationService.searchByPosition(pos, Double.parseDouble(radius));
 		}
 		else {
 			res = locationService.getAllLocations();
@@ -51,22 +62,5 @@ public class APIController{
 		var locations = locationService.getAllLocations();
 		Collections.shuffle(locations);
 		return locations.get(0);
-	}
-
-	@GetMapping("/api/search/name/{name}")
-	public List<Location> searchByName(@PathVariable String name) {
-		var locations = locationService.searchByName(name);
-		return locations;
-	}
-
-	@GetMapping("/api/search/position")
-	public List<Location> searchByPosition(
-		@RequestParam Double longitude,
-		@RequestParam Double latitude,
-		@RequestParam Double radius
-	) {
-		var pos = new GPSLocation(longitude, latitude);
-		var locations = locationService.searchByPosition(pos, radius);
-		return locations;
 	}
 }
