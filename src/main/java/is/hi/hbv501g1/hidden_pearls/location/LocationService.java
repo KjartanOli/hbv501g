@@ -15,10 +15,10 @@ public interface LocationService {
 	public List<Location> searchByPosition(GPSLocation pos, double radius);
 
 	public Location create(String name, GPSLocation location, String description, LocationCategory category,
-			List<VisitStatistics> visits);
+		int visits);
 
 	public Location update(long id, String name, GPSLocation location, String description, LocationCategory category,
-			List<VisitStatistics> visits);
+		int visits);
 
 	public void delete(long id);
 

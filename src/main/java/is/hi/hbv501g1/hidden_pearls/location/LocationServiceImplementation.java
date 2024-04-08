@@ -63,25 +63,25 @@ public class LocationServiceImplementation implements LocationService {
 	}
 
 	public Location create(String name, GPSLocation location, String description, LocationCategory category,
-			List<VisitStatistics> visits) {
+			int visits) {
 		var loc = new Location();
 		loc.setName(name);
 		loc.setLoc(location);
 		loc.setDescription(description);
 		loc.setCategory(category);
-		loc.setStatistics(visits);
+		loc.setMonthlyVisits(visits);
 
 		return repository.save(loc);
 	}
 
 	public Location update(long id, String name, GPSLocation location, String description, LocationCategory category,
-			List<VisitStatistics> visits) {
+			int visits) {
 		var loc = getLocation(id);
 		loc.setName(name);
 		loc.setLoc(location);
 		loc.setDescription(description);
 		loc.setCategory(category);
-		loc.setStatistics(visits);
+		loc.setMonthlyVisits(visits);
 
 		return repository.save(loc);
 	}

@@ -17,9 +17,7 @@ public class Location {
 	private GPSLocation loc;
 	private String description;
 	private LocationCategory category;
-
-	@ElementCollection
-	private List<VisitStatistics> statistics;
+	private int monthlyVisits;
 
 	public long getId() {
 		return id;
@@ -62,11 +60,11 @@ public class Location {
 		this.category = category;
 	}
 
-	public List<VisitStatistics> getStatistics() {
-		return statistics;
+	public int getMonthlyVisits() {
+		return monthlyVisits;
 	}
 
-	public void setStatistics(List<VisitStatistics> statistics) {
-		this.statistics = statistics;
+	public void setMonthlyVisits(int visits) {
+		this.monthlyVisits = visits;
 	}
 }
