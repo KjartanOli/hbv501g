@@ -34,14 +34,18 @@ public class LocationServiceImplementation implements LocationService {
 	private double distance(GPSLocation p1, GPSLocation p2) {
 		final var earthRadiusKm = 6371;
 
-		var dLat = Math.toRadians(p2.getLatitude() - p1.getLatitude());
-		var dLon = Math.toRadians(p2.getLongitude() - p1.getLongitude());
-
 		var lat1 = Math.toRadians(p1.getLatitude());
-		var lat2 = Math.toRadians(p2.getLatitude());
+		var lon1 = Math.toRadians(p1.getLongitude());
 
-		var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-				Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2);
+		var lat2 = Math.toRadians(p2.getLatitude());
+		var lon2 = Math.toRadians(p2.getLongitude());
+
+		var dLat = lat2 - lat1;
+		var dLon = lon2 - lon1;
+
+		var a = Math.pow(Math.sin(dLat / 2), 2)
+				+ Math.cos(lat1) * Math.cos(lat2)
+				  * Math.pow(Math.sin(dLon / 2), 2);
 		var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
 		return earthRadiusKm * c;
 
@@ -51,6 +55,7 @@ public class LocationServiceImplementation implements LocationService {
 		var locations = getAllLocations();
 		List<Location> res = new ArrayList<Location>();
 		for (var location : locations) {
+			System.err.printf("Distance: %f%n", distance(pos, location.getLoc()));
 			if (distance(pos, location.getLoc()) < radius)
 				res.add(location);
 		}

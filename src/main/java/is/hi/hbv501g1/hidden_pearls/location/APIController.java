@@ -40,7 +40,7 @@ public class APIController{
 			res = locationService.searchByName(name);
 		}
 		else if (longitude != null && latitude != null && radius != null) {
-			var pos = new GPSLocation(Double.parseDouble(longitude), Double.parseDouble(latitude));
+			var pos = new GPSLocation(Double.parseDouble(latitude), Double.parseDouble(longitude));
 			res = locationService.searchByPosition(pos, Double.parseDouble(radius));
 		}
 		else {
