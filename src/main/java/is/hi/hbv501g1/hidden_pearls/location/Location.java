@@ -7,6 +7,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ElementCollection;
+import jakarta.persistence.Column;
 
 @Entity
 public class Location {
@@ -15,9 +16,10 @@ public class Location {
 	private long id;
 	private String name;
 	private GPSLocation loc;
+	@Column(columnDefinition = "TEXT")
 	private String description;
 	private LocationCategory category;
-	private int monthlyVisits;
+	private int weeklyVisits;
 
 	public long getId() {
 		return id;
@@ -61,10 +63,10 @@ public class Location {
 	}
 
 	public int getMonthlyVisits() {
-		return monthlyVisits;
+		return weeklyVisits;
 	}
 
 	public void setMonthlyVisits(int visits) {
-		this.monthlyVisits = visits;
+		this.weeklyVisits = visits;
 	}
 }
