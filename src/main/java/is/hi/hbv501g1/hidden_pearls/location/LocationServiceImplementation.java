@@ -69,7 +69,7 @@ public class LocationServiceImplementation implements LocationService {
 		loc.setLoc(location);
 		loc.setDescription(description);
 		loc.setCategory(category);
-		loc.setMonthlyVisits(visits);
+		loc.setWeeklyVisits(visits);
 
 		return repository.save(loc);
 	}
@@ -81,7 +81,7 @@ public class LocationServiceImplementation implements LocationService {
 		loc.setLoc(location);
 		loc.setDescription(description);
 		loc.setCategory(category);
-		loc.setMonthlyVisits(visits);
+		loc.setWeeklyVisits(visits);
 
 		return repository.save(loc);
 	}

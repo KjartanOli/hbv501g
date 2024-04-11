@@ -62,11 +62,11 @@ public class Location {
 		this.category = category;
 	}
 
-	public int getMonthlyVisits() {
+	public int getWeeklyVisits() {
 		return weeklyVisits;
 	}
 
-	public void setMonthlyVisits(int visits) {
+	public void setWeeklyVisits(int visits) {
 		this.weeklyVisits = visits;
 	}
 }
