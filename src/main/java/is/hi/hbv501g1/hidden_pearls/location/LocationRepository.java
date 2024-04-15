@@ -12,7 +12,7 @@ public interface LocationRepository extends CrudRepository<Location, Long> {
 
 	public Location findById(long id);
 
-	public List<Location> findByNameLike(String name);
+	public List<Location> findByNameContainingIgnoreCase(String name);
 
 	public List<Location> findByCategory(LocationCategory category);
 

@@ -24,7 +24,7 @@ public class LocationServiceImplementation implements LocationService {
 	}
 
 	public List<Location> searchByName(String name) {
-		return repository.findByNameLike(name);
+		return repository.findByNameContainingIgnoreCase(name);
 	}
 
 	public List<Location> searchByCategory(LocationCategory category) {
